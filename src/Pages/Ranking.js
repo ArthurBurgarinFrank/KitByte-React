@@ -5,7 +5,7 @@ import "../index.css";
 import Players from "../Components/Players";
 
 export default function Ranking() {
-  const myPlayer = [
+  const myPlayers = [
     {
       name: "Angela91138",
       pts: 1243,
@@ -19,7 +19,7 @@ export default function Ranking() {
       pts: 1243,
     },
   ];
-  const objetos = myPlayer.map((item) => <Players player={item} />);
+  const players = myPlayers.map((object) => <Players player={object} />);
   return (
     <Grid
       sx={{
@@ -58,10 +58,10 @@ export default function Ranking() {
           flexDirection: "column",
           gap: 3,
           width: "100%",
-          justifyContent: "center",
+          alignItems: "center",
         }}
       >
-        {objetos}
+        {players}
       </Grid>
     </Grid>
   );
