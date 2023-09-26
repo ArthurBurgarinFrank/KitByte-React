@@ -1,5 +1,5 @@
 import Grid from "@mui/material/Grid";
-import trophyImg from "../assets/trophy.png";
+import trophyImg from "../assets/Images/trophy.png";
 import "../index.css";
 
 import Players from "../Components/Players";
@@ -17,9 +17,11 @@ export default function Ranking() {
     {
       name: "Angela91138",
       pts: 1243,
-    },
+    }
   ];
-  const players = myPlayers.map((object) => <Players player={object} />);
+  const players = myPlayers.map((object, index) => (
+    <Players key={index} index={index + 1} background={"#FFFFFF"} color={"#2880F2"} player={object} />
+  ));
   return (
     <Grid
       sx={{
@@ -27,12 +29,13 @@ export default function Ranking() {
         height: "100vh",
         display: "flex",
         flexDirection: "column",
-        gap: 6,
+        gap: "8%",
+        backgroundColor: "#F3F3F3"
       }}
     >
       <Grid
         sx={{
-          height: "20vh",
+          height: "30vh",
           width: "100%",
         }}
       >
@@ -47,7 +50,7 @@ export default function Ranking() {
               <b>Ranking Kitbyte</b>
             </p>
             <img src={trophyImg} alt="imagem de troféu" />
-            <p>LIGA: OURO</p>
+            <p><b>LIGA: OURO</b></p>
           </div>
         </Grid>
       </Grid>
