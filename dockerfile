@@ -1,6 +1,5 @@
 FROM node:latest
 
-# Defina o diretório de trabalho no contêiner
 WORKDIR /app
 
 COPY package*.json ./

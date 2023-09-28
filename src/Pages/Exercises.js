@@ -1,4 +1,4 @@
-import Task from "../Components/Task"
+import Tiny from "../Components/tinyBox"
 import ImgWhats from "../assets/Images/whatsApp.png"
 
 import module from "../dependencies";
@@ -6,20 +6,23 @@ import module from "../dependencies";
 export default function Exercises() {
   const MyTasks = [
     {
-      name: "WhatsApp",
+      title: "Exercícios",
+      description: "WhatsApp",
       img: ImgWhats
     },
     {
-      name: "Instagram",
-      img: ""
+      title: "Exercícios",
+      description: "WhatsApp",
+      img: ImgWhats
     },
     {
-      name: "YouTube",
-      img: ""
+      title: "Exercícios",
+      description: "WhatsApp",
+      img: ImgWhats
     }
   ];
   const Tasks = MyTasks.map((object, index) => (
-    <Task key={index} text={object.name} img={object.img} />
+    <Tiny key={index} title={object.title} description={object.description} img={object.img} contrast={true} />
   ));
     return (
       <module.Grid sx={{

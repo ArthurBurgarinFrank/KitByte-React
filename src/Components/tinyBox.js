@@ -2,13 +2,12 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 import module from "../dependencies";
 
-const Task = (props) => {
-
+const Tiny = (props) => {
   const buttonThemeReturn = createTheme({
     palette: {
       primary: {
         main: "#D9D9D9",
-        contrastText: "#2880F2"
+        contrastText: "#2880F2",
       },
     },
     shape: {
@@ -17,15 +16,16 @@ const Task = (props) => {
     components: {
       MuiButton: {
         styleOverrides: {
-          contained: { 
-            boxShadow: '0px 8px 8px -1px rgba(0,0,0,0.1), 0px 7px 8px -1px rgba(0,0,0,0.3), 0px 2px 5px 0px rgba(0,0,0,0.1)',
+          contained: {
+            boxShadow:
+              "0px 8px 8px -1px rgba(0,0,0,0.1), 0px 7px 8px -1px rgba(0,0,0,0.3), 0px 2px 5px 0px rgba(0,0,0,0.1)",
           },
         },
       },
     },
     typography: {
-      fontFamily: 'MinhaFonte, Arial, sans-serif',
-    }
+      fontFamily: "MinhaFonte, Arial, sans-serif",
+    },
   });
 
   return (
@@ -74,11 +74,13 @@ const Task = (props) => {
         }}
       >
         <p>
-          <b>Exercícios</b>
+          <b>{props.title}</b>
         </p>
-        <p>
-          <b>{props.text}</b>
-        </p>
+        {props.contrast ? (
+          <b>{props.description}</b>
+        ) : (
+          <p>{props.description}</p>
+        )}
         <ThemeProvider theme={buttonThemeReturn}>
           <module.Button
             sx={{
@@ -94,4 +96,4 @@ const Task = (props) => {
     </module.Grid>
   );
 };
-export default Task;
+export default Tiny;
