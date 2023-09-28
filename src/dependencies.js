@@ -1,6 +1,8 @@
 import Grid from '@mui/material/Grid';
+import Button from "@mui/material/Button";
 
 module = {
-    Grid
+    Grid,
+    Button
 }
 export default module
