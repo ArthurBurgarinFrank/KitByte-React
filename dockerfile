@@ -1,4 +1,4 @@
-FROM node:18.12.0
+FROM node:latest
 
 # Defina o diretório de trabalho no contêiner
 WORKDIR /app
