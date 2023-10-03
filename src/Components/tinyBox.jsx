@@ -51,7 +51,7 @@ const Tiny = (props) => {
         <module.Grid
           sx={{
             backgroundColor: "#F3F3F3",
-            width: "55%",
+            width: "60%",
             height: "70%",
             borderRadius: "100%",
             display: "flex",

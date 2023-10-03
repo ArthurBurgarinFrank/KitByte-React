@@ -38,8 +38,8 @@ export default function Exercises() {
       img: ImgBell
     },
     {
-      title: "Exercícios",
-      description: "WhatsApp",
+      title: "Redes sociais,",
+      description: "Conheça cada uma!",
       img: ImgBell
     }
   ];
@@ -83,7 +83,7 @@ export default function Exercises() {
           <img src={ImgBell} id="imgTemp" />
         </module.Grid>
 
-        <h2 style={{textAlign: "center"}}>
+        <h2 style={{textAlign: "center", fontWeight: "normal", color: "white"}}>
           Continue com sua última atividade:
         </h2>
         
