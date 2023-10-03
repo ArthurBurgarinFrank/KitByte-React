@@ -1,27 +1,37 @@
 import trophyImg from "../assets/Images/trophy.png";
 import "../index.css";
 import Player from "../Components/player.jsx";
-
+import axios from "axios";
 import module from "../dependencies"
+import { useEffect, useState } from "react";
 
 export default function Ranking() {
-  const MyPlayers = [
-    {
-      name: "Angela91138",
-      pts: 1243,
-    },
-    {
-      name: "Angela91138",
-      pts: 1243,
-    },
-    {
-      name: "Angela91138",
-      pts: 1243,
-    }
-  ];
-  const Players = MyPlayers.map((object, index) => (
-    <Player key={index} index={index + 1} background={"#FFFFFF"} color={"#2880F2"} player={object} fullWidth={false} />
-  ));
+
+  const [MyPlayers, setMyPlayers] = useState()
+  const [Players, setPlayers] = useState()
+
+  async function myFunc() {
+    
+    await axios({
+      method: "get",
+      url: "http://localhost:8080/api/user/ranking",
+    })
+      .then((response) => {
+        console.log(response.data)
+        setMyPlayers(response.data)
+        setPlayers(MyPlayers.map((object, index) => (
+          <Player key={index} background={"#FFFFFF"} color={"#2880F2"} player={object} fullWidth={false} />
+        )))
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  } 
+  useEffect(() => {
+    myFunc()
+  }, [])
+
+
   return (
     <module.Grid
       sx={{
