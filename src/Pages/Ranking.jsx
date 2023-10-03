@@ -1,6 +1,6 @@
 import trophyImg from "../assets/Images/trophy.png";
 import "../index.css";
-import Player from "../Components/player";
+import Player from "../Components/player.jsx";
 
 import module from "../dependencies"
 
