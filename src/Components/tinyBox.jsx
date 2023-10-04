@@ -1,9 +1,7 @@
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-
 import module from "../dependencies";
 
 const Tiny = (props) => {
-  const buttonThemeReturn = createTheme({
+  const buttonThemeReturn = module.createTheme({
     palette: {
       primary: {
         main: "#D9D9D9",
@@ -82,7 +80,7 @@ const Tiny = (props) => {
         ) : (
           <p>{props.description}</p>
         )}
-        <ThemeProvider theme={buttonThemeReturn}>
+        {props.text == false ? <b>{"Exercício - " + props.exerciseNumber}</b> : <module.ThemeProvider theme={buttonThemeReturn}>
           <module.Button
             sx={{
               marginTop: 1,
@@ -92,7 +90,7 @@ const Tiny = (props) => {
           >
             {props.text}
           </module.Button>
-        </ThemeProvider>
+        </module.ThemeProvider>}
       </module.Grid>
     </module.Grid>
   );

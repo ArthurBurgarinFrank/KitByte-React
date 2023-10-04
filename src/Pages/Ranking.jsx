@@ -14,13 +14,12 @@ export default function Ranking() {
     
     await axios({
       method: "get",
-      url: "http://localhost:8080/api/user/ranking",
+      url: "https://api-interdisciplinar.onrender.com/api/user/ranking",
     })
       .then((response) => {
-        console.log(response.data)
         setMyPlayers(response.data)
         setPlayers(MyPlayers.map((object, index) => (
-          <Player key={index} background={"#FFFFFF"} color={"#2880F2"} player={object} fullWidth={false} />
+          <Player key={index} index={index + 1} background={"#FFFFFF"} color={"#2880F2"} player={object} fullWidth={false} />
         )))
       })
       .catch((error) => {
@@ -29,7 +28,7 @@ export default function Ranking() {
   } 
   useEffect(() => {
     myFunc()
-  }, [])
+  }, [MyPlayers])
 
 
   return (

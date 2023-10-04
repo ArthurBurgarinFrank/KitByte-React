@@ -1,12 +1,10 @@
-import { object } from "prop-types";
 import Tiny from "../Components/tinyBox"
 import ImgBell from "../assets/Images/bell.png"
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 import module from "../dependencies";
 
 export default function Exercises() {
-  const buttonThemeReturn = createTheme({
+  const buttonThemeReturn = module.createTheme({
     palette: {
       primary: {
         main: "#D9D9D9",
@@ -87,7 +85,7 @@ export default function Exercises() {
           Continue com sua última atividade:
         </h2>
         
-        <ThemeProvider theme={buttonThemeReturn}>
+        <module.ThemeProvider theme={buttonThemeReturn}>
           <module.Button
             sx={{
               marginTop: 1,
@@ -97,7 +95,7 @@ export default function Exercises() {
           >
             Ir para Atividade
           </module.Button>
-        </ThemeProvider>
+        </module.ThemeProvider>
       </module.Grid>
 
       {courses}

@@ -1,7 +1,6 @@
 import module from "../dependencies"
 
 const Players = (props) => {
-    const myPlayer = props.player
     return <module.Grid sx={{
         display: "flex",
         justifyContent: "space-between",
@@ -12,8 +11,8 @@ const Players = (props) => {
         width: "98%"
     }}>
         <h3>#{props.index}</h3>
-        <p>{myPlayer.name}</p>
-        <p>{myPlayer.pts} pts</p>
+        <p>{props.player.nome_usuario}</p>
+        <p>{props.player.pontos} pts</p>
     </module.Grid>
 }
 export default Players
