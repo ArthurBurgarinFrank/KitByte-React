@@ -5,6 +5,7 @@ import Answer from "../Components/Quiz/Answer";
 import Question from "../Components/Quiz/Question";
 import Result from "../Components/Quiz/Result";
 import module from "../dependencies";
+import { useState } from "react";
 
 export default function Quiz() {
   const object = {
@@ -12,6 +13,21 @@ export default function Quiz() {
     description: "WhatsApp",
     img: ImgBell,
   };
+
+  const [Clicked, setClicked] = useState(false)
+
+  const handleOpen = () => {
+    setClicked(true)
+  }
+  const handleClose = () => {
+    setClicked(false)
+  }
+
+  module.useEffect(() => {
+    setTimeout(() => {
+      handleClose()
+    }, "1500");
+  }, [Clicked]);
 
   return (
     <module.Grid sx={{
@@ -59,11 +75,11 @@ export default function Quiz() {
           height: "70%",
           display: "flex"
         }}>
-          <Answer />
+          <Answer onClick={handleOpen} />
         </module.Grid>
-        
+
       </module.Grid>
-      <Result />
+      {Clicked ? <Result answer={true} /> : null}
     </module.Grid>
   );
 }

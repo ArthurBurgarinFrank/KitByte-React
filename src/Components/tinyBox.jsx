@@ -1,6 +1,14 @@
 import module from "../dependencies";
 
 const Tiny = (props) => {
+
+  const location = module.useLocation();
+  var myPath = "/list"
+  var myProps = props.myCourse
+  if (location.pathname == "/map" || location.pathname == "/list") {
+    myPath = "/quiz"
+  }
+
   const buttonThemeReturn = module.createTheme({
     palette: {
       primary: {
@@ -81,15 +89,17 @@ const Tiny = (props) => {
           <p>{props.description}</p>
         )}
         {props.text == false ? <b>{"Exercício - " + props.exerciseNumber}</b> : <module.ThemeProvider theme={buttonThemeReturn}>
-          <module.Button
-            sx={{
-              marginTop: 1,
-            }}
-            color="primary"
-            variant="contained"
-          >
-            {props.text}
-          </module.Button>
+          <module.Link to={myPath} state={{ object: myProps }}>
+            <module.Button
+              sx={{
+                marginTop: 1,
+              }}
+              color="primary"
+              variant="contained"
+            >
+              {props.text}
+            </module.Button>
+          </module.Link>
         </module.ThemeProvider>}
       </module.Grid>
     </module.Grid>

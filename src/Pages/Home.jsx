@@ -1,9 +1,28 @@
 import Tiny from "../Components/tinyBox"
 import ImgBell from "../assets/Images/bell.png"
-
+import ImgWhats from "../assets/Images/whatsApp.png"
 import module from "../dependencies";
 
-export default function Exercises() {
+export default function list() {
+
+  const MyTasks = [
+    {
+      title: "Exercícios",
+      description: "WhatsApp",
+      img: ImgWhats
+    },
+    {
+      title: "Exercícios",
+      description: "WhatsApp",
+      img: ImgWhats
+    },
+    {
+      title: "Exercícios",
+      description: "WhatsApp",
+      img: ImgWhats
+    }
+  ];
+
   const buttonThemeReturn = module.createTheme({
     palette: {
       primary: {
@@ -41,8 +60,21 @@ export default function Exercises() {
       img: ImgBell
     }
   ];
+  const MyCourse = [
+    {
+      title: "Aula",
+      description: "Instagram",
+      img: ImgBell
+    },
+    {
+      title: "Aula",
+      description: "Instagram",
+      img: ImgBell
+    }
+  ];
+
   const courses = MyCourses.map((object, index) => (
-    <Tiny key={index} text={"Conheça!"} title={object.title} description={object.description} img={object.img} contrast={false} fullWidth={false} />
+    <Tiny myCourse={MyCourse} key={index} text={"Conheça!"} title={object.title} description={object.description} img={object.img} contrast={false} fullWidth={false} />
   ));
   return (
     <module.Grid sx={{
@@ -81,23 +113,24 @@ export default function Exercises() {
           <img src={ImgBell} id="imgTemp" />
         </module.Grid>
 
-        <h2 style={{textAlign: "center", fontWeight: "normal", color: "white"}}>
+        <h2 style={{ textAlign: "center", fontWeight: "normal", color: "white" }}>
           Continue com sua última atividade:
         </h2>
-        
+
         <module.ThemeProvider theme={buttonThemeReturn}>
-          <module.Button
-            sx={{
-              marginTop: 1,
-            }}
-            color="primary"
-            variant="contained"
-          >
-            Ir para Atividade
-          </module.Button>
+          <module.Link to="/list" state={{ object: MyTasks }}>
+            <module.Button
+              sx={{
+                marginTop: 1,
+              }}
+              color="primary"
+              variant="contained"
+            >
+              Ir para Atividade
+            </module.Button>
+          </module.Link>
         </module.ThemeProvider>
       </module.Grid>
-
       {courses}
     </module.Grid>
   );
