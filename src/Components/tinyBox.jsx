@@ -3,11 +3,18 @@ import module from "../dependencies";
 const Tiny = (props) => {
 
   const location = module.useLocation();
-  var myPath = "/list"
+  var myPath = "/courses"
   var myProps = props.myCourse
-  if (location.pathname == "/map" || location.pathname == "/list") {
+  if (location.pathname == "/map") {
     myPath = "/quiz"
   }
+  else if (location.pathname == "/exercises") {
+    myPath = "/map"
+  }
+  else if (location.pathname == "/courses" || location.pathname == "/lesson") {
+    myPath = "/lesson"
+  }
+  
 
   const buttonThemeReturn = module.createTheme({
     palette: {
@@ -39,7 +46,7 @@ const Tiny = (props) => {
       sx={{
         width: props.fullWidth ? "100vw" : "90vw",
         height: "20vh",
-        backgroundColor: "#2880F2",
+        backgroundColor: props.bgColor,
         display: "flex",
         borderRadius: props.fullWidth ? 3 : 5,
         zIndex: 2
@@ -59,7 +66,7 @@ const Tiny = (props) => {
             backgroundColor: "#F3F3F3",
             width: "60%",
             height: "70%",
-            borderRadius: "100%",
+            borderRadius: props.bdRadius,
             display: "flex",
             alignItems: "center",
             justifyContent: "center",

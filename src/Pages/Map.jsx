@@ -29,6 +29,7 @@ export default function Map() {
           contrast={true}
           fullWidth={true}
           text={"Continue"}
+          bdRadius={"100%"}
         />
       </module.Grid>
       <module.Grid>

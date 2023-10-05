@@ -74,7 +74,7 @@ export default function list() {
   ];
 
   const courses = MyCourses.map((object, index) => (
-    <Tiny myCourse={MyCourse} key={index} text={"Conheça!"} title={object.title} description={object.description} img={object.img} contrast={false} fullWidth={false} />
+    <Tiny bdRadius={"100%"} bgColor={"#2880F2"} myCourse={MyCourse} key={index} text={"Conheça!"} title={object.title} description={object.description} img={object.img} contrast={false} fullWidth={false} />
   ));
   return (
     <module.Grid sx={{
@@ -118,7 +118,7 @@ export default function list() {
         </h2>
 
         <module.ThemeProvider theme={buttonThemeReturn}>
-          <module.Link to="/list" state={{ object: MyTasks }}>
+          <module.Link to="/exercises" state={{ object: MyTasks }}>
             <module.Button
               sx={{
                 marginTop: 1,

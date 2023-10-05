@@ -52,6 +52,7 @@ export default function Quiz() {
           fullWidth={true}
           text={false}
           exerciseNumber={1}
+          bdRadius={"100%"}
         />
       </module.Grid>
 
