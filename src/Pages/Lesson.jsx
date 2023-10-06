@@ -1,6 +1,6 @@
 import ImgBell from "../assets/Images/bell.png"
 import Tiny from "../Components/tinyBox";
-import module from "../dependencies";
+import module from "../dependencies"
 
 const Lesson = (props) => {
     const lessons = props.lessons.map((object, index) => (
