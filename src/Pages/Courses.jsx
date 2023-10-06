@@ -1,22 +1,10 @@
-import ImgBell from "../assets/Images/bell.png"
 import Tiny from "../Components/tinyBox";
 import module from "../dependencies";
 
-const Courses = () => {
-    const MyCourses = [
-        {
-            title: "Aula",
-            description: "WhatsApp",
-            img: ImgBell
-        },
-        {
-            title: "Aula",
-            description: "WhatsApp",
-            img: ImgBell
-        }
-    ];
-    const courses = MyCourses.map((object, index) => (
-        <Tiny bdRadius={"100%"} bgColor={"#2880F2"} key={index} text={"Conheça!"} title={object.title} description={object.description} img={object.img} contrast={true} fullWidth={false} />
+const Courses = (props) => {
+    
+    const Lessons = props.lessons.map((object, index) => (
+        <Tiny object={object} bdRadius={"100%"} bgColor={"#2880F2"} key={index} text={"Conheça!"} contrast={true} fullWidth={false} />
     ));
     return (<module.Grid sx={{
         display: "flex",
@@ -25,7 +13,7 @@ const Courses = () => {
         gap: 4,
         padding: 10
     }}>
-        {courses}
+        {Lessons}
     </module.Grid>)
 }
 export default Courses

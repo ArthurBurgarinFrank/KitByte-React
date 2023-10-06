@@ -2,21 +2,9 @@ import ImgBell from "../assets/Images/bell.png"
 import Tiny from "../Components/tinyBox";
 import module from "../dependencies";
 
-const Lesson = () => {
-    const MyCourses = [
-        {
-            title: "Aula 1",
-            description: "WhatsApp",
-            img: ImgBell
-        },
-        {
-            title: "Aula 2",
-            description: "WhatsApp",
-            img: ImgBell
-        }
-    ];
-    const courses = MyCourses.map((object, index) => (
-        <Tiny index={index + 1} bdRadius={"10%"} bgColor={"#707070"} course={true} key={index} text={"Conheça!"} title={object.title} description={object.description} img={object.img} contrast={true} fullWidth={false} />
+const Lesson = (props) => {
+    const lessons = props.lessons.map((object, index) => (
+        <Tiny object={object} index={index + 1} bdRadius={"10%"} bgColor={"#707070"} course={true} key={index} text={"Conheça!"} title={object.title} description={object.description} img={object.img} contrast={true} fullWidth={false} />
     ));
 
     return (<module.Grid sx={{
@@ -80,13 +68,13 @@ const Lesson = () => {
                     }}
                 >
                     <p>
-                        <b>Aula WhatsApp</b>
+                        <b>Aula {props.lessons[0].description}</b>
                     </p>
                     <b>Vídeo aulas</b>
                 </module.Grid>
             </module.Grid>
         </module.Grid>
-        {courses}
+        {lessons}
     </module.Grid>)
 }
 export default Lesson

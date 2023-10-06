@@ -3,25 +3,7 @@ import ImgBell from "../assets/Images/bell.png"
 import ImgWhats from "../assets/Images/whatsApp.png"
 import module from "../dependencies";
 
-export default function list() {
-
-  const MyTasks = [
-    {
-      title: "Exercícios",
-      description: "WhatsApp",
-      img: ImgWhats
-    },
-    {
-      title: "Exercícios",
-      description: "WhatsApp",
-      img: ImgWhats
-    },
-    {
-      title: "Exercícios",
-      description: "WhatsApp",
-      img: ImgWhats
-    }
-  ];
+export default function Home(props) {
 
   const buttonThemeReturn = module.createTheme({
     palette: {
@@ -48,34 +30,10 @@ export default function list() {
     },
   });
 
-  const MyCourses = [
-    {
-      title: "Redes sociais,",
-      description: "Conheça cada uma!",
-      img: ImgBell
-    },
-    {
-      title: "Redes sociais,",
-      description: "Conheça cada uma!",
-      img: ImgBell
-    }
-  ];
-  const MyCourse = [
-    {
-      title: "Aula",
-      description: "Instagram",
-      img: ImgBell
-    },
-    {
-      title: "Aula",
-      description: "Instagram",
-      img: ImgBell
-    }
-  ];
-
-  const courses = MyCourses.map((object, index) => (
-    <Tiny bdRadius={"100%"} bgColor={"#2880F2"} myCourse={MyCourse} key={index} text={"Conheça!"} title={object.title} description={object.description} img={object.img} contrast={false} fullWidth={false} />
+  const courses = props.courses.map((object, index) => (
+    <Tiny object={object} bdRadius={"100%"} bgColor={"#2880F2"} key={index} text={"Conheça!"} contrast={false} fullWidth={false} />
   ));
+  
   return (
     <module.Grid sx={{
       display: "flex",
@@ -118,7 +76,7 @@ export default function list() {
         </h2>
 
         <module.ThemeProvider theme={buttonThemeReturn}>
-          <module.Link to="/exercises" state={{ object: MyTasks }}>
+          <module.Link to="/exercises">
             <module.Button
               sx={{
                 marginTop: 1,

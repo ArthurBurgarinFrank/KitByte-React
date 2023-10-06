@@ -1,15 +1,9 @@
 import Tiny from "../Components/tinyBox";
-import ImgBell from "../assets/Images/bell.png";
 
 import MapComp from "../Components/MapComponent";
 import module from "../dependencies";
 
-export default function Map() {
-  const object = {
-    title: "Exercícios",
-    description: "WhatsApp",
-    img: ImgBell,
-  };
+export default function Map(props) {
 
   return (
     <module.Grid>
@@ -23,9 +17,7 @@ export default function Map() {
         }}
       >
         <Tiny
-          title={object.title}
-          description={object.description}
-          img={object.img}
+          object={props.exercise}
           contrast={true}
           fullWidth={true}
           text={"Continue"}

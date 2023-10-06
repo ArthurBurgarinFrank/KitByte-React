@@ -4,7 +4,7 @@ const Tiny = (props) => {
 
   const location = module.useLocation();
   var myPath = "/courses"
-  var myProps = props.myCourse
+  var myProps = props.courses
   if (location.pathname == "/map") {
     myPath = "/quiz"
   }
@@ -72,7 +72,7 @@ const Tiny = (props) => {
             justifyContent: "center",
           }}
         >
-          <img src={props.img} id="imgTemp" />
+          <img src={props.object.img} id="imgTemp" />
         </module.Grid>
       </module.Grid>
 
@@ -88,12 +88,12 @@ const Tiny = (props) => {
         }}
       >
         <p>
-          <b>{props.title}</b>
+          <b>{props.object.title} {props.index ? props.index : null}</b>
         </p>
         {props.contrast ? (
-          <b>{props.description}</b>
+          <b>{props.object.description}</b>
         ) : (
-          <p>{props.description}</p>
+          <p>{props.object.description}</p>
         )}
         {props.text == false ? <b>{"Exercício - " + props.exerciseNumber}</b> : <module.ThemeProvider theme={buttonThemeReturn}>
           <module.Link to={myPath} state={{ object: myProps }}>
