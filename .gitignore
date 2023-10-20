@@ -1,0 +1,26 @@
+# Arquivos de compilação e executáveis
+*.o
+*.out
+*.exe
+
+# Diretórios de dependências
+node_modules/
+vendor/
+
+# Arquivos de configuração
+config.ini
+config.json
+
+# Arquivos de log
+*.log
+
+# Arquivos de backup
+*.bak
+
+# Arquivos temporários
+*.tmp
+
+# Ignorar arquivos em um diretório específico
+/path/to/ignored-directory/
+
+# Comentários - linhas que começam com # são ignoradas
