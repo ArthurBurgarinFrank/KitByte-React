@@ -23,7 +23,7 @@ const Exercises = () => {
     ]
 
     const exercises = dataObject.map((object, index) => (
-        <Tiny object={object} bdRadius={"100%"} bgColor={"#2880F2"} key={index} text={"Conheça!"} contrast={true} fullWidth={false} />
+        <Tiny title={object.title} description={object.description} bdRadius={"100%"} bgColor={"#2880F2"} key={index} text={"Conheça!"} contrast={true} fullWidth={false} />
     ))
 
     var index
