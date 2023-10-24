@@ -1,6 +1,6 @@
 import module from "../../dependencies";
 
-const Question = (props) => {
+const Question = () => {
     return (
         <module.Grid sx={{
             backgroundColor: "#71E5FF",

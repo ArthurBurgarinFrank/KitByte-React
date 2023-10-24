@@ -1,5 +1,5 @@
-import Tiny from "../Components/tinyBox";
 import module from "../dependencies";
+import Tiny from "../Components/tinyBox";
 import ImgBell from "../assets/Images/bell.png";
 
 const Exercises = () => {

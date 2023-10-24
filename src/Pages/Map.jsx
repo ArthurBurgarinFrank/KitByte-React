@@ -1,6 +1,6 @@
+import module from "../dependencies";
 import Tiny from "../Components/tinyBox";
 import MapComp from "../Components/MapComponent";
-import module from "../dependencies";
 
 export default function Map() {
   const [MyContents, setMyContents] = module.useState()
@@ -30,7 +30,7 @@ export default function Map() {
         sx={{
           backgroundColor: "#2880F2",
           width: "100vw",
-          height: "18vh",
+          height: "20vh",
           display: "flex",
           justifyContent: "center"
         }}

@@ -1,6 +1,6 @@
+import module from "../dependencies";
 import Tiny from "../Components/tinyBox";
 import ImgBell from "../assets/Images/bell.png";
-import module from "../dependencies";
 
 export default function Home() {
   const [MyContents, setMyContents] = module.useState();

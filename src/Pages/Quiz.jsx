@@ -1,14 +1,12 @@
+import module from "../dependencies";
 import Tiny from "../Components/tinyBox";
-
 import Answer from "../Components/Quiz/Answer";
 import Question from "../Components/Quiz/Question";
 import Result from "../Components/Quiz/Result";
-import module from "../dependencies";
-import { useState } from "react";
 import ImgBell from "../assets/Images/bell.png";
 
 
-export default function Quiz(props) {
+export default function Quiz() {
   
   const dataObject = {
     title: "Exercícios",
@@ -16,13 +14,15 @@ export default function Quiz(props) {
     img: ImgBell
   }
 
-  const [Clicked, setClicked] = useState(false)
+  const [Clicked, setClicked] = module.useState(false)
 
   const handleOpen = () => {
     setClicked(true)
   }
   const handleClose = () => {
-    setClicked(false)
+    if (Clicked) {
+      setClicked(false)
+    }
   }
 
   module.useEffect(() => {
@@ -47,7 +47,8 @@ export default function Quiz(props) {
         }}
       >
         <Tiny
-          object={dataObject}
+          title={dataObject.title}
+          description={dataObject.description}
           contrast={true}
           fullWidth={true}
           text={false}
