@@ -6,7 +6,6 @@ import Quiz from "./Pages/Quiz";
 import Courses from "./Pages/Courses";
 import Exercises from "./Pages/Exercises";
 import Lesson from "./Pages/Lesson"
-import ImgBell from "./assets/Images/bell.png";
 
 export default function AppRoutes() {
   return (

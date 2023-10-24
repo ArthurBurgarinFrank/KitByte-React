@@ -3,16 +3,16 @@ import module from "../dependencies";
 const Tiny = (props) => {
   const location = module.useLocation();
   var myPath = "/courses"
-  if (location.pathname == "/map") {
+  if (location.pathname === "/map") {
     myPath = "/quiz"
   }
-  else if (location.pathname == "/exercises") {
+  else if (location.pathname === "/exercises") {
     myPath = "/map"
   }
-  else if (location.pathname == "/courses" || location.pathname == "/lesson") {
+  else if (location.pathname === "/courses" || location.pathname === "/lesson") {
     myPath = "/lesson"
   }
-  else if (location.pathname == "/") {
+  else if (location.pathname === "/") {
     myPath = "/exercises"
   }
   

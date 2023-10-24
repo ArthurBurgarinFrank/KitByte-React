@@ -26,7 +26,7 @@ const Lesson = () => {
     ]
 
     const lessons = dataObject.map((object, index) => (
-        <Tiny object={object} title={object.content} bdRadius={"10%"} bgColor={"#707070"} course={true} key={index} text={"Conheça!"} contrast={true} fullWidth={false} />
+        <Tiny title={object.content} description={object.content} bdRadius={"10%"} bgColor={"#707070"} course={true} key={index} text={"Conheça!"} contrast={true} fullWidth={false} />
     ));
 
     return (<module.Grid sx={{

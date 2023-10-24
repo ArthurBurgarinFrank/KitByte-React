@@ -3,8 +3,6 @@ import MapComp from "../Components/MapComponent";
 import module from "../dependencies";
 
 export default function Map() {
-
-  
   const [MyContents, setMyContents] = module.useState()
 
   async function myFunc() {
