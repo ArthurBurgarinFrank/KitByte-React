@@ -1,6 +1,6 @@
 import module from "../dependencies";
 import Tiny from "../Components/tinyBox";
-import ImgBell from "../assets/Images/imgTask.png";
+import ImgTask from "../assets/Images/imgTask.png";
 
 export default function Home() {
   const [MyContents, setMyContents] = module.useState();
@@ -106,7 +106,7 @@ export default function Home() {
             justifyContent: "center",
           }}
         >
-          <img src={ImgBell} id="imgTemp" />
+          <img src={ImgTask} id="imgTemp" />
         </module.Grid>
 
         <h2

@@ -3,7 +3,7 @@ import Ball from './Ball';
 const MapComp = (props) => {
     const balls = [
         { id: 0, x: "60%", y: "110%" },
-        { id: 1, x: "60%", y: "85%" },
+        { id: 1, x: "60%", y: "75%" },
         { id: 2, x: "60%", y: "55%" },
         { id: 3, x: "10%", y: "55%" },
         { id: 4, x: "10%", y: "20%" },

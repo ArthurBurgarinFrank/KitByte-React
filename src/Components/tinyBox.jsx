@@ -13,7 +13,7 @@ const Tiny = (props) => {
     myPath = "/lesson"
   }
   else if (location.pathname === "/") {
-    myPath = "/exercises"
+    myPath = "/lesson"
   }
   
   var desc
@@ -107,7 +107,7 @@ const Tiny = (props) => {
           <p>{desc ? desc : props.description ? props.description : "Carregando..."}</p>
         )}
         {props.text == false ? <b>{"Exercício - " + props.exerciseNumber}</b> : <module.ThemeProvider theme={buttonThemeReturn}>
-          <module.Link to={myPath}>
+          <module.Link to={myPath} state={{ img: props.img, description: props.description }}>
             <module.Button
               sx={{
                 marginTop: 1,

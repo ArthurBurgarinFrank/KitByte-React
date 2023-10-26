@@ -31,57 +31,57 @@ export default function Quiz() {
     }, "1500");
   }, [Clicked]);
 
-  return (
-    <module.Grid sx={{
-      display: "flex",
-      flexDirection: "column",
-      gap: 3
-    }}>
-      <module.Grid
-        sx={{
-          backgroundColor: "#2880F2",
-          width: "100vw",
-          height: "18vh",
-          display: "flex",
-          justifyContent: "center"
-        }}
-      >
-        <Tiny
-          title={dataObject.title}
-          description={dataObject.description}
-          contrast={true}
-          fullWidth={true}
-          text={false}
-          exerciseNumber={1}
-          bdRadius={"100%"}
-        />
-      </module.Grid>
+  
 
+  return (
+    <div className="removeScroll">
       <module.Grid sx={{
-        height: "76vh",
+        marginTop: 6.5,
         display: "flex",
         flexDirection: "column"
       }}>
-
+        <module.Grid
+          sx={{
+            backgroundColor: "#2880F2",
+            width: "100vw",
+            height: "18vh",
+            display: "flex",
+            justifyContent: "center"
+          }}
+        >
+          <Tiny
+            title={dataObject.title}
+            description={dataObject.description}
+            contrast={true}
+            fullWidth={true}
+            text={false}
+            exerciseNumber={1}
+            bdRadius={"100%"}
+          />
+        </module.Grid>
         <module.Grid sx={{
-          height: "30%",
+          height: "76vh",
           display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          padding: "5%"
+          flexDirection: "column"
         }}>
-          <Question />
+          <module.Grid sx={{
+            height: "30%",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            padding: "5%"
+          }}>
+            <Question />
+          </module.Grid>
+          <module.Grid sx={{
+            height: "70%",
+            display: "flex"
+          }}>
+            <Answer onClick={handleOpen} />
+          </module.Grid>
         </module.Grid>
-
-        <module.Grid sx={{
-          height: "70%",
-          display: "flex"
-        }}>
-          <Answer onClick={handleOpen} />
-        </module.Grid>
-
+        {Clicked ? <Result answer={true} /> : null}
       </module.Grid>
-      {Clicked ? <Result answer={true} /> : null}
-    </module.Grid>
+    </div>
   );
 }

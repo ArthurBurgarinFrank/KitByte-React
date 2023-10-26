@@ -1,40 +1,55 @@
 import module from "../dependencies";
 import Tiny from "../Components/tinyBox";
-import ImgBell from "../assets/Images/bell.png";
 
 const Exercises = () => {
+  const [MyContents, setMyContents] = module.useState();
 
-    const dataObject = [
-        {
-            title: "Exercícios",
-            description: "WhatsApp",
-            img: ImgBell
-        },
-        {
-            title: "Exercícios",
-            description: "WhatsApp",
-            img: ImgBell
-        },
-        {
-            title: "Exercícios",
-            description: "WhatsApp",
-            img: ImgBell
-        }
-    ]
+  async function myFunc() {
+    await module
+      .axios({
+        method: "get",
+        url: "https://api-interdisciplinar.onrender.com/api/app/all",
+      })
+      .then((response) => {
+        setMyContents(response.data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  }
+  module.useEffect(() => {
+    myFunc();
+  }, []);
 
-    const exercises = dataObject.map((object, index) => (
-        <Tiny title={object.title} description={object.description} bdRadius={"100%"} bgColor={"#2880F2"} key={index} text={"Conheça!"} contrast={true} fullWidth={false} />
-    ))
+  var exercise;
+  if (MyContents) {
+    exercise = MyContents.map((object, index) => (
+      <Tiny
+        title={"Exercício"}
+        description={object.app}
+        img={object.foto_curso}
+        bdRadius={"100%"}
+        bgColor={"#2880F2"}
+        key={index}
+        text={"Conheça!"}
+        contrast={true}
+        fullWidth={false}
+      />
+    ));
+  }
 
-    var index
-    return (<module.Grid sx={{
+  return (
+    <module.Grid
+      sx={{
         display: "flex",
         alignItems: "center",
         flexDirection: "column",
         gap: 4,
-        padding: 10
-    }}>
-        {exercises}
-    </module.Grid>)
-}
-export default Exercises
+        padding: 10,
+      }}
+    >
+      {exercise}
+    </module.Grid>
+  );
+};
+export default Exercises;

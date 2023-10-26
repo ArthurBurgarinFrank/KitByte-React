@@ -45,3 +45,7 @@ img{
 #txt{
   overflow: hidden;
 }
+.removeScroll{
+  overflow: hidden;
+  max-height: 100vh;
+}
