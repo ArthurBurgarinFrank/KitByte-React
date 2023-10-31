@@ -26,6 +26,7 @@ const Exercises = () => {
     exercise = MyContents.map((object, index) => (
       <Tiny
         title={"Exercício"}
+        id={object.id}
         description={object.app}
         img={object.foto_curso}
         bdRadius={"100%"}

@@ -1,11 +1,12 @@
 import module from "../dependencies";
 import Tiny from "../Components/tinyBox";
 import { useLocation } from "react-router-dom";
-import imgVideo from "../assets/Images/imgVideo.png"
+import imgVideo from "../assets/Images/imgVideo.png";
 
 const Lesson = () => {
   const location = useLocation();
-  const { img, description } = location.state;
+  const img = location.state ? location.state.img : null;
+  const description = location.state ? location.state.description : null;
   const [MyContents, setMyContents] = module.useState();
 
   async function myFunc() {
@@ -51,9 +52,11 @@ const Lesson = () => {
         flexDirection: "column",
         gap: 4,
         paddingBottom: 10,
-        marginTop: 6.5
+        marginTop: 6.5,
       }}
     >
+      {!img ? <module.Navigate to="/" /> : null}
+
       <module.Grid
         sx={{
           backgroundColor: "#2880F2",

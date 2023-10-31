@@ -1,6 +1,6 @@
 import module from "../../dependencies";
 
-const Question = () => {
+const Question = (props) => {
     return (
         <module.Grid sx={{
             backgroundColor: "#71E5FF",
@@ -13,7 +13,7 @@ const Question = () => {
             alignItems: "center"
         }}>
             <h2 style={{ textAlign: "center", fontWeight: "normal", color: "#006EFD" }}>
-                Qual dos botões você deve apertar para enviar um Emoji?
+                {props.announced}
             </h2>
         </module.Grid>
     );

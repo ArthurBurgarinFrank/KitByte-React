@@ -9,11 +9,11 @@ const Tiny = (props) => {
   else if (location.pathname === "/exercises") {
     myPath = "/map"
   }
-  else if (location.pathname === "/courses" || location.pathname === "/lesson") {
+  else if (location.pathname === "/courses" || location.pathname === "/") {
     myPath = "/lesson"
   }
-  else if (location.pathname === "/") {
-    myPath = "/lesson"
+  else if (location.pathname === "/lesson") {
+    myPath = "/video"
   }
   
   var desc
@@ -107,7 +107,7 @@ const Tiny = (props) => {
           <p>{desc ? desc : props.description ? props.description : "Carregando..."}</p>
         )}
         {props.text == false ? <b>{"Exercício - " + props.exerciseNumber}</b> : <module.ThemeProvider theme={buttonThemeReturn}>
-          <module.Link to={myPath} state={{ img: props.img, description: props.description }}>
+          <module.Link to={myPath} state={{ img: props.img, description: props.description, id: props.id }}>
             <module.Button
               sx={{
                 marginTop: 1,

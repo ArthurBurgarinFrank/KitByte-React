@@ -4,27 +4,32 @@ import MapComp from "../Components/MapComponent";
 import { useLocation } from "react-router-dom";
 
 export default function Map() {
-  const [MyContents, setMyContents] = module.useState()
-
+  const [MyContents, setMyContents] = module.useState();
+  const location = useLocation();
+  const img = location.state ? location.state.img : null;
+  const description = location.state ? location.state.description : null;
+  const id = location.state ? location.state.id : null;
+  
   async function myFunc() {
-    await module.axios({  
-      method: "get",
-      url: "https://api-interdisciplinar.onrender.com/api/app/currentclass?user_id=1&course_id=1",
-    })
+    const req = id ? `https://api-interdisciplinar.onrender.com/api/app/currentclass?user_id=1&course_id=${id}` : `https://api-interdisciplinar.onrender.com/api/app/currentclass?user_id=1&course_id=1`
+    await module
+      .axios({
+        method: "GET",
+        url: req,
+      })
       .then((response) => {
-        setMyContents(response.data)
+        setMyContents(response.data);
+        console.log(response.data);
       })
       .catch((error) => {
         console.error("Error:", error);
       });
-  } 
-  module.useEffect(() => {
-    myFunc()
-  }, [])
-
-  if (!MyContents) {
-    return null
   }
+
+  module.useEffect(() => {
+    myFunc();
+  }, []);
+
   return (
     <div className="removeScroll">
       <module.Grid>
@@ -35,13 +40,13 @@ export default function Map() {
             height: "20vh",
             display: "flex",
             justifyContent: "center",
-            marginTop: 6.5
+            marginTop: 6.5,
           }}
         >
           <Tiny
             title={"Exercícios"}
-            // description={description}
-            // img={img}
+            description={MyContents ? MyContents.nome_curso : description}
+            img={MyContents ? MyContents.imagem : img}
             contrast={true}
             fullWidth={true}
             text={"Continue"}
@@ -49,7 +54,7 @@ export default function Map() {
           />
         </module.Grid>
         <module.Grid>
-          <MapComp selected={MyContents} />
+          <MapComp selected={MyContents ? MyContents.indice_aula : 1} />
         </module.Grid>
       </module.Grid>
     </div>

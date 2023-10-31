@@ -6,6 +6,7 @@ import Quiz from "./Pages/Quiz";
 import Courses from "./Pages/Courses";
 import Exercises from "./Pages/Exercises";
 import Lesson from "./Pages/Lesson"
+import Video from "./Pages/Video"
 
 export default function AppRoutes() {
   return (
@@ -18,6 +19,7 @@ export default function AppRoutes() {
         <Route path="/courses" element={<Courses />} />
         <Route path="/exercises" element={<Exercises />} />
         <Route path="/lesson" element={<Lesson />} />
+        <Route path="/video" element={<Video />} />
       </Routes>
     </BrowserRouter>
   );
