@@ -65,15 +65,14 @@ export default function Home() {
     ));
   }
 
-  var Android;
-  var txt = "?";
+  const [txt, setTxt] = useState("?");
 
-  module.useEffect(() => {
-    if (Android) {
+  useEffect(() => {
+    if (Android && typeof Android.parametrosFront === "function") {
       const guardianEmail = Android.parametrosFront();
-      txt = guardianEmail;
+      setTxt(guardianEmail);
     } else {
-      txt = "não logado";
+      setTxt("KKKKKKKKKKKJJJJJJJJJJJJJJJJJK");
     }
   }, []);
 
