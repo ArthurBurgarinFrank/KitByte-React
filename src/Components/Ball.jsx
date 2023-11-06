@@ -1,9 +1,12 @@
 import module from "../dependencies";
 
-const Ball = ({ selected, index, x, y }) => {
+const Ball = ({ selected, index, x, y, img, description }) => {
   return (
     <g>
-      <module.Link to={selected ? "/quiz" : null}>
+      <module.Link
+        to={selected ? "/quiz" : null}
+        state={selected ? { img: img, description: description } : null}
+      >
         <circle
           cx={x}
           cy={y}
