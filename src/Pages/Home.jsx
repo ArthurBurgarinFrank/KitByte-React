@@ -66,15 +66,18 @@ export default function Home() {
   }
 
   const [txt, setTxt] = module.useState("?");
-  var Android
+  var Android;
+
+  const handleGetStudentInfo = module.useCallback(async () => {
+    if (typeof Android !== undefined) {
+      setTxt(Android.parametrosFront())
+    } else {
+      setTxt("KKKKKKKKKKKJJJJJJKJKJKJJKKJJKJ")
+    }
+  }, []);
 
   module.useEffect(() => {
-    if (Android && typeof Android.parametrosFront === "function") {
-      const guardianEmail = Android.parametrosFront();
-      setTxt(guardianEmail);
-    } else {
-      setTxt("KKKKKKKKKKKJJJJJJJJJJJJJJJJJK");
-    }
+    handleGetStudentInfo();
   }, []);
 
   return (
