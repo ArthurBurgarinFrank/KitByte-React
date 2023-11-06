@@ -1,13 +1,10 @@
+import React from "react";
 import module from "../dependencies";
 import Tiny from "../Components/tinyBox";
 import ImgTask from "../assets/Images/imgTask.png";
 
 export default function Home() {
   const [MyContents, setMyContents] = module.useState();
-
-  //pegando email da url
-  const [searchParams, setSearchParams] = module.useSearchParams();
-  const email = searchParams.get("email");
 
   async function myFunc() {
     await module
@@ -51,8 +48,7 @@ export default function Home() {
     },
   });
 
-  
-  var courses
+  var courses;
   if (MyContents) {
     courses = MyContents.map((object, index) => (
       <Tiny
@@ -68,7 +64,18 @@ export default function Home() {
       />
     ));
   }
-  
+
+  var Android;
+  var txt = "?";
+
+  module.useEffect(() => {
+    if (Android) {
+      const guardianEmail = Android.parametrosFront();
+      txt = guardianEmail;
+    } else {
+      txt = "não logado";
+    }
+  }, []);
 
   return (
     <module.Grid
@@ -112,7 +119,7 @@ export default function Home() {
         <h2
           style={{ textAlign: "center", fontWeight: "normal", color: "white" }}
         >
-          Continue com sua última atividade:
+          {txt}:
         </h2>
 
         <module.ThemeProvider theme={buttonThemeReturn}>
