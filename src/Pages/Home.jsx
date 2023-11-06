@@ -65,19 +65,15 @@ export default function Home() {
     ));
   }
 
-  var Android
   const [txt, setTxt] = module.useState("?");
 
-  const handleGetStudentInfo = module.useCallback(async () => {
-    if (Android) {
-      setTxt(Android.parametrosFront());
-    } else {
-      setTxt("KKKKKJJJJJJJJJJKKKKKJKJKJJKJJJJJ");
-    }
-  }, []);
-
   module.useEffect(() => {
-    handleGetStudentInfo();
+    if (window.Android) {
+      const guardianEmail = window.Android.parametrosFront();
+      setTxt(guardianEmail);
+    } else {
+      setTxt("KKKKKKKKKKKJJJJJJJJJJJJJJJJJK");
+    }
   }, []);
 
   return (
