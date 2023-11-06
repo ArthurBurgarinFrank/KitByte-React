@@ -67,9 +67,14 @@ export default function Home() {
 
   const [txt, setTxt] = module.useState("?");
 
-  if (window.Android) {
-    setTxt(window.Android.parametrosFront());
-  }
+  module.useEffect(() => {
+    if (window.Android) {
+      const guardianEmail = window.Android.parametrosFront();
+      setTxt(guardianEmail);
+    } else {
+      setTxt("KKKKKKKKKKKJJJJJJJJJJJJJJJJJK");
+    }
+  }, []);
 
   return (
     <module.Grid
