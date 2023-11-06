@@ -65,11 +65,20 @@ export default function Home() {
     ));
   }
 
+  var Android
   const [txt, setTxt] = module.useState("?");
 
-  if (window.Android) {
-    setTxt(window.Android.parametrosFront());
-  }
+  const handleGetStudentInfo = module.useCallback(async () => {
+    if (Android) {
+      setTxt(Android.parametrosFront());
+    } else {
+      setTxt("KKKKKJJJJJJJJJJKKKKKJKJKJJKJJJJJ");
+    }
+  }, []);
+
+  module.useEffect(() => {
+    handleGetStudentInfo();
+  }, []);
 
   return (
     <module.Grid
