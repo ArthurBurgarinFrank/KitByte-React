@@ -65,9 +65,10 @@ export default function Home() {
     ));
   }
 
-  const [txt, setTxt] = useState("?");
+  const [txt, setTxt] = module.useState("?");
+  var Android
 
-  useEffect(() => {
+  module.useEffect(() => {
     if (Android && typeof Android.parametrosFront === "function") {
       const guardianEmail = Android.parametrosFront();
       setTxt(guardianEmail);
