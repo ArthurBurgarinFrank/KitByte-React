@@ -13,7 +13,7 @@ const Question = (props) => {
             alignItems: "center"
         }}>
             <h2 style={{ textAlign: "center", fontWeight: "normal", color: "#006EFD" }}>
-                Qual dos botões você deve apertar para enviar um Emoji?
+                {props.announced}
             </h2>
         </module.Grid>
     );

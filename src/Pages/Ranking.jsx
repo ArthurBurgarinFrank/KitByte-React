@@ -1,7 +1,7 @@
-import trophyImg from "../assets/Images/trophy.png";
 import "../index.css";
-import Player from "../Components/player.jsx";
 import module from "../dependencies"
+import trophyImg from "../assets/Images/trophy.png";
+import Player from "../Components/player.jsx";
 
 export default function Ranking() {
 

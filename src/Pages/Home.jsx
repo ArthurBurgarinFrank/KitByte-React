@@ -1,9 +1,13 @@
-import Tiny from "../Components/tinyBox";
-import ImgBell from "../assets/Images/bell.png";
 import module from "../dependencies";
+import Tiny from "../Components/tinyBox";
+import ImgTask from "../assets/Images/imgTask.png";
 
 export default function Home() {
   const [MyContents, setMyContents] = module.useState();
+
+  //pegando email da url
+  const [searchParams, setSearchParams] = module.useSearchParams();
+  const email = searchParams.get("email");
 
   async function myFunc() {
     await module
@@ -102,7 +106,7 @@ export default function Home() {
             justifyContent: "center",
           }}
         >
-          <img src={ImgBell} id="imgTemp" />
+          <img src={ImgTask} id="imgTemp" />
         </module.Grid>
 
         <h2

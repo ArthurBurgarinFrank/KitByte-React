@@ -1,89 +1,116 @@
+import module from "../dependencies";
 import Tiny from "../Components/tinyBox";
-
 import Answer from "../Components/Quiz/Answer";
 import Question from "../Components/Quiz/Question";
 import Result from "../Components/Quiz/Result";
-import module from "../dependencies";
-import { useState } from "react";
-import ImgBell from "../assets/Images/bell.png";
+import { useLocation } from "react-router-dom";
 
 export default function Quiz() {
-  
-  const dataObject = {
-    title: "Exercícios",
-    description: "WhatsApp",
-    img: ImgBell,
-  };
+  const [Clicked, setClicked] = module.useState(false);
+  const [MyContents, setMyContents] = module.useState();
+  const [Response, setResponse] = module.useState();
 
-  const [Clicked, setClicked] = useState(false);
+  const location = useLocation();
+  const description = location.state ? location.state.description : null;
+  const img = location.state ? location.state.img : null;
 
-  const handleOpen = () => {
-    if (Clicked) {
-      return
+  async function myFunc() {
+    await module
+      .axios({
+        method: "get",
+        url: "https://api-interdisciplinar.onrender.com/api/app/exercise?class_id=4",
+      })
+      .then((response) => {
+        setMyContents(response.data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  }
+  module.useEffect(() => {
+    myFunc();
+  }, []);
+
+  const handleOpen = (value) => {
+    if (!Clicked) {
+      setResponse(value);
     }
     setClicked(true);
-    setTimeout(handleClose, 1500);
   };
   const handleClose = () => {
-    setClicked(false);
+    if (Clicked) {
+      setClicked(false);
+    }
   };
 
-  return (
-    <module.Grid
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        gap: 3,
-      }}
-    >
-      <module.Grid
-        sx={{
-          backgroundColor: "#2880F2",
-          width: "100vw",
-          height: "18vh",
-          display: "flex",
-          justifyContent: "center",
-        }}
-      >
-        <Tiny
-          object={dataObject}
-          contrast={true}
-          fullWidth={true}
-          text={false}
-          exerciseNumber={1}
-          bdRadius={"100%"}
-        />
-      </module.Grid>
+  module.useEffect(() => {
+    setTimeout(() => {
+      handleClose();
+    }, "1500");
+  }, [Clicked]);
 
+  if (!MyContents) {
+    return null;
+  }
+  return (
+    <div className="removeScroll">
       <module.Grid
         sx={{
-          height: "76vh",
+          marginTop: 6.5,
           display: "flex",
           flexDirection: "column",
         }}
       >
+        {!img ? <module.Navigate to="/" /> : null}
         <module.Grid
           sx={{
-            height: "30%",
+            backgroundColor: "#2880F2",
+            width: "100vw",
+            height: "18vh",
             display: "flex",
             justifyContent: "center",
-            alignItems: "center",
-            padding: "5%",
           }}
         >
-          <Question />
+          <Tiny
+            title={"Exercícios"}
+            description={description}
+            img={img}
+            contrast={true}
+            fullWidth={true}
+            text={false}
+            exerciseNumber={MyContents.id}
+            bdRadius={"100%"}
+          />
         </module.Grid>
-
         <module.Grid
           sx={{
-            height: "70%",
+            height: "76vh",
             display: "flex",
+            flexDirection: "column",
           }}
         >
-          <Answer onClick={handleOpen} />
+          <module.Grid
+            sx={{
+              height: "30%",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              padding: "5%",
+            }}
+          >
+            <Question announced={MyContents.enunciado} />
+          </module.Grid>
+          <module.Grid
+            sx={{
+              height: "70%",
+              display: "flex",
+            }}
+          >
+            <Answer object={MyContents} onClick={handleOpen} />
+          </module.Grid>
         </module.Grid>
+        {Clicked ? <Result answer={Response} /> : null}
       </module.Grid>
-      {Clicked ? <Result answer={true} /> : null}
-    </module.Grid>
+    </div>
   );
 }
