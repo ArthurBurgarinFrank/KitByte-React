@@ -9,9 +9,11 @@ export default function Map() {
   const img = location.state ? location.state.img : null;
   const description = location.state ? location.state.description : null;
   const id = location.state ? location.state.id : null;
-  
+
   async function myFunc() {
-    const req = id ? `https://api-interdisciplinar.onrender.com/api/app/currentclass?user_id=1&course_id=${id}` : `https://api-interdisciplinar.onrender.com/api/app/currentclass?user_id=1&course_id=1`
+    const req = id
+      ? `https://api-interdisciplinar.onrender.com/api/app/currentclass?user_id=1&course_id=${id}`
+      : `https://api-interdisciplinar.onrender.com/api/app/currentclass?user_id=1&course_id=1`;
     await module
       .axios({
         method: "GET",
@@ -19,7 +21,6 @@ export default function Map() {
       })
       .then((response) => {
         setMyContents(response.data);
-        console.log(response.data);
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -54,7 +55,11 @@ export default function Map() {
           />
         </module.Grid>
         <module.Grid>
-          <MapComp selected={MyContents ? MyContents.indice_aula : 1} />
+          <MapComp
+            description={MyContents ? MyContents.nome_curso : description}
+            img={MyContents ? MyContents.imagem : img}
+            selected={MyContents ? MyContents.indice_aula : 1}
+          />
         </module.Grid>
       </module.Grid>
     </div>
