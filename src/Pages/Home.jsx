@@ -66,19 +66,10 @@ export default function Home() {
   }
 
   const [txt, setTxt] = module.useState("?");
-  var Android;
 
-  const handleGetStudentInfo = module.useCallback(async () => {
-    if (typeof Android !== undefined) {
-      setTxt(Android.parametrosFront())
-    } else {
-      setTxt("KKKKKKKKKKKJJJJJJKJKJKJJKKJJKJ")
-    }
-  }, []);
-
-  module.useEffect(() => {
-    handleGetStudentInfo();
-  }, []);
+  if (window.Android) {
+    setTxt(window.Android.parametrosFront());
+  }
 
   return (
     <module.Grid
