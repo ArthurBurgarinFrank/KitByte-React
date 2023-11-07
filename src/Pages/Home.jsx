@@ -65,16 +65,6 @@ export default function Home() {
     ));
   }
 
-  module.useEffect(() => {
-    if (window.Android) {
-      const userEmail = window.Android.parametrosFront();
-      const userLogged = window.Android.parametrosFront() ? true : false;
-
-      sessionStorage.setItem("email", userEmail);
-      sessionStorage.setItem("logged", userLogged);
-    }
-  }, []);
-
   return (
     <module.Grid
       sx={{
