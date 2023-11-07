@@ -1,9 +1,9 @@
 import React from "react";
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
 
 import module from "../dependencies";
 import Tiny from "../Components/tinyBox";
@@ -11,8 +11,10 @@ import ImgTask from "../assets/Images/imgTask.png";
 
 export default function Home() {
   const [MyContents, setMyContents] = module.useState();
-
+  const [IsNull, setIsNull] = module.useState(true);
   const [Email, setEmail] = module.useState("");
+  const [Open, setOpen] = module.useState(false)
+
   module.useEffect(() => {
     if (window.Android) {
       const userEmail = window.Android.parametrosFront();
@@ -28,6 +30,7 @@ export default function Home() {
       })
       .then((response) => {
         setMyContents(response.data);
+        setIsNull(false);
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -62,6 +65,13 @@ export default function Home() {
     },
   });
 
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   if (!MyContents) {
     return;
   }
@@ -76,29 +86,19 @@ export default function Home() {
         paddingBottom: 10,
       }}
     >
-
-      {/* <Dialog
-        open={open}
-        onClose={handleClose}
+      <Dialog
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
+        open={Open}
       >
         <DialogTitle id="alert-dialog-title">
-          {"Use Google's location service?"}
+          {"Nenhum curso em progresso"}
         </DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            Let Google help apps determine location. This means sending anonymous
-            location data to Google, even when no apps are running.
-          </DialogContentText>
-        </DialogContent>
+
         <DialogActions>
-          <Button onClick={handleClose}>Disagree</Button>
-          <Button onClick={handleClose} autoFocus>
-            Agree
-          </Button>
+          <module.Button onClick={handleClose} autoFocus>Ok</module.Button>
         </DialogActions>
-      </Dialog> */}
+      </Dialog>
 
       <module.Grid
         sx={{
@@ -136,10 +136,13 @@ export default function Home() {
 
         <module.ThemeProvider theme={buttonThemeReturn}>
           <module.Link
-            to="/map"
+            to={IsNull ? "/" : "/map"}
+            onClick={IsNull ? handleClickOpen : null}
             state={{
               img: MyContents.ultimo ? MyContents.ultimo.imagem : null,
-              description: MyContents.ultimo ? MyContents.ultimo.nome_curso : null,
+              description: MyContents.ultimo
+                ? MyContents.ultimo.nome_curso
+                : null,
             }}
           >
             <module.Button
