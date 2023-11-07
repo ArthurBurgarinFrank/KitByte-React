@@ -28,7 +28,7 @@ export default function Ranking() {
     myFunc()
   }, [MyPlayers])
 
-  var txt = sessionStorage.getItem(userEmail)
+  var txt = sessionStorage.getItem("email")
 
   return (
     <module.Grid
