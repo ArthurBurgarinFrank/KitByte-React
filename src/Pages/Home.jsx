@@ -6,11 +6,19 @@ import ImgTask from "../assets/Images/imgTask.png";
 export default function Home() {
   const [MyContents, setMyContents] = module.useState();
 
+  const [Email, setEmail] = module.useState("");
+  module.useEffect(() => {
+    if (window.Android) {
+      const userEmail = window.Android.parametrosFront();
+      setEmail(userEmail);
+    }
+  }, []);
+
   async function myFunc() {
     await module
       .axios({
         method: "get",
-        url: "https://api-interdisciplinar.onrender.com/api/app/suggestedcourse",
+        url: `https://api-interdisciplinar.onrender.com/api/app/suggestedcourse?email=${Email}`,
       })
       .then((response) => {
         setMyContents(response.data);
@@ -48,23 +56,9 @@ export default function Home() {
     },
   });
 
-  var courses;
-  if (MyContents) {
-    courses = MyContents.map((object, index) => (
-      <Tiny
-        title={object.app}
-        description={object.descricao}
-        img={object.foto_curso}
-        bdRadius={"100%"}
-        bgColor={"#2880F2"}
-        key={index}
-        text={"Conheça!"}
-        contrast={false}
-        fullWidth={false}
-      />
-    ));
+  if (!MyContents) {
+    return;
   }
-
   return (
     <module.Grid
       sx={{
@@ -111,7 +105,13 @@ export default function Home() {
         </h2>
 
         <module.ThemeProvider theme={buttonThemeReturn}>
-          <module.Link to="/map">
+          <module.Link
+            to="/map"
+            state={{
+              img: MyContents.ultimo.imagem,
+              description: MyContents.ultimo.nome_curso,
+            }}
+          >
             <module.Button
               sx={{
                 marginTop: 1,
@@ -124,7 +124,26 @@ export default function Home() {
           </module.Link>
         </module.ThemeProvider>
       </module.Grid>
-      {courses}
+      <Tiny
+        title={MyContents.sugerido1.app}
+        description={MyContents.sugerido1.descricao}
+        img={MyContents.sugerido1.foto_curso}
+        bdRadius={"100%"}
+        bgColor={"#2880F2"}
+        text={"Conheça!"}
+        contrast={false}
+        fullWidth={false}
+      />
+      <Tiny
+        title={MyContents.sugerido2.app}
+        description={MyContents.sugerido2.descricao}
+        img={MyContents.sugerido2.foto_curso}
+        bdRadius={"100%"}
+        bgColor={"#2880F2"}
+        text={"Conheça!"}
+        contrast={false}
+        fullWidth={false}
+      />
     </module.Grid>
   );
 }
