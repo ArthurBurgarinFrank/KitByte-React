@@ -33,4 +33,4 @@ npm start
 ```
 
 ## Conclusão
-Após os passos acima você terá o react funcionando. 
+Após os passos acima você terá o react funcionando em seu dispositivo. 
