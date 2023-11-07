@@ -65,14 +65,13 @@ export default function Home() {
     ));
   }
 
-  const [txt, setTxt] = module.useState("?");
-
   module.useEffect(() => {
     if (window.Android) {
-      const guardianEmail = window.Android.parametrosFront();
-      setTxt(guardianEmail);
-    } else {
-      setTxt("KKKKKKKKKKKJJJJJJJJJJJJJJJJJK");
+      const userEmail = window.Android.parametrosFront();
+      const userLogged = window.Android.parametrosFront() ? true : false;
+
+      sessionStorage.setItem("email", userEmail);
+      sessionStorage.setItem("logged", userLogged);
     }
   }, []);
 
@@ -118,7 +117,7 @@ export default function Home() {
         <h2
           style={{ textAlign: "center", fontWeight: "normal", color: "white" }}
         >
-          {txt}:
+          Continue com sua última atividade:
         </h2>
 
         <module.ThemeProvider theme={buttonThemeReturn}>
