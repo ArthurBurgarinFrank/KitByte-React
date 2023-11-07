@@ -1,4 +1,10 @@
 import React from "react";
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+
 import module from "../dependencies";
 import Tiny from "../Components/tinyBox";
 import ImgTask from "../assets/Images/imgTask.png";
@@ -18,7 +24,7 @@ export default function Home() {
     await module
       .axios({
         method: "get",
-        url: `https://api-interdisciplinar.onrender.com/api/app/suggestedcourse?email=${Email}`,
+        url: `https://api-interdisciplinar.onrender.com/api/app/suggestedcourse?email=clemennilda@gmail.com`,
       })
       .then((response) => {
         setMyContents(response.data);
@@ -70,6 +76,30 @@ export default function Home() {
         paddingBottom: 10,
       }}
     >
+
+      {/* <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          {"Use Google's location service?"}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Let Google help apps determine location. This means sending anonymous
+            location data to Google, even when no apps are running.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Disagree</Button>
+          <Button onClick={handleClose} autoFocus>
+            Agree
+          </Button>
+        </DialogActions>
+      </Dialog> */}
+
       <module.Grid
         sx={{
           width: "90vw",
@@ -108,8 +138,8 @@ export default function Home() {
           <module.Link
             to="/map"
             state={{
-              img: MyContents.ultimo.imagem,
-              description: MyContents.ultimo.nome_curso,
+              img: MyContents.ultimo ? MyContents.ultimo.imagem : null,
+              description: MyContents.ultimo ? MyContents.ultimo.nome_curso : null,
             }}
           >
             <module.Button
