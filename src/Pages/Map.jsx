@@ -37,7 +37,7 @@ export default function Map() {
 
   module.useEffect(() => {
     myFunc();
-  }, []);
+  }, [Email]);
 
   return (
     <div className="removeScroll">
