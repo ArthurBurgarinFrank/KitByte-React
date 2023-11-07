@@ -10,10 +10,18 @@ export default function Map() {
   const description = location.state ? location.state.description : null;
   const id = location.state ? location.state.id : null;
 
+  const [Email, setEmail] = module.useState("")
+  module.useEffect(() => {
+    if (window.Android) {
+      const userEmail = window.Android.parametrosFront();
+      setEmail(userEmail)
+    }
+  }, []);
+
   async function myFunc() {
     const req = id
-      ? `https://api-interdisciplinar.onrender.com/api/app/currentclass?email=1&course_id=${id}`
-      : `https://api-interdisciplinar.onrender.com/api/app/currentclass?email=1&course_id=1`;
+      ? `https://api-interdisciplinar.onrender.com/api/app/currentclass?email=${Email}&course_id=${id}`
+      : `https://api-interdisciplinar.onrender.com/api/app/currentclass?email=${Email}&course_id=1`;
     await module
       .axios({
         method: "GET",
