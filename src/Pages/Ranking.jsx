@@ -28,6 +28,7 @@ export default function Ranking() {
     myFunc()
   }, [MyPlayers])
 
+  var txt = sessionStorage.getItem("email")
 
   return (
     <module.Grid
@@ -57,7 +58,7 @@ export default function Ranking() {
               <b>Ranking Kitbyte</b>
             </p>
             <img src={trophyImg} alt="imagem de troféu" />
-            <p><b>LIGA: OURO</b></p>
+            <p><b>LIGA: {txt}</b></p>
           </div>
         </module.Grid>
       </module.Grid>
