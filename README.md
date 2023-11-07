@@ -1,4 +1,4 @@
-# Projeto interdisciplinar Kitbyte
+# Projeto interdisciplinar Kitbyte - Tech
 
 O projeto se trata da parte em react do nosso aplicativo (Kitbyte).
 Essa parte do projeto irá aparecer dentro do nosso aplicativo em mobile, porém se você deseja executar o projeto basta realizar os passos abaixo.
