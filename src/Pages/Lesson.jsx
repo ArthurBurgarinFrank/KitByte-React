@@ -9,8 +9,6 @@ const Lesson = () => {
   const description = location.state ? location.state.description : null;
   const [MyContents, setMyContents] = module.useState();
 
-  var txt = sessionStorage.getItem("email")
-
   async function myFunc() {
     await module
       .axios({
@@ -116,7 +114,7 @@ const Lesson = () => {
             <p>
               <b>Aula {description}</b>
             </p>
-            <b>Vídeo {txt}</b>
+            <b>Vídeo aulas</b>
           </module.Grid>
         </module.Grid>
       </module.Grid>
