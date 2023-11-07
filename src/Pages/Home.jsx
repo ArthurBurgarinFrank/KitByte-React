@@ -1,19 +1,18 @@
 import React from "react";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 
 import module from "../dependencies";
 import Tiny from "../Components/tinyBox";
 import ImgTask from "../assets/Images/imgTask.png";
+import { useNavigate } from "react-router";
 
 export default function Home() {
   const [MyContents, setMyContents] = module.useState();
   const [IsNull, setIsNull] = module.useState(true);
   const [Email, setEmail] = module.useState("");
-  const [Open, setOpen] = module.useState(false)
+  const [Open, setOpen] = module.useState(false);
 
   module.useEffect(() => {
     if (window.Android) {
@@ -30,7 +29,9 @@ export default function Home() {
       })
       .then((response) => {
         setMyContents(response.data);
-        setIsNull(false);
+        if (MyContents.ultimo) {
+          setIsNull(false);
+        }
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -39,6 +40,8 @@ export default function Home() {
   module.useEffect(() => {
     myFunc();
   }, []);
+
+  const navigate = useNavigate();
 
   const buttonThemeReturn = module.createTheme({
     palette: {
@@ -96,7 +99,9 @@ export default function Home() {
         </DialogTitle>
 
         <DialogActions>
-          <module.Button onClick={handleClose} autoFocus>Ok</module.Button>
+          <module.Button onClick={handleClose} autoFocus>
+            Ok
+          </module.Button>
         </DialogActions>
       </Dialog>
 
@@ -135,9 +140,16 @@ export default function Home() {
         </h2>
 
         <module.ThemeProvider theme={buttonThemeReturn}>
-          <module.Link
-            to={IsNull ? "/" : "/map"}
-            onClick={IsNull ? handleClickOpen : null}
+          <module.Button
+            onClick={
+              !IsNull
+                ? handleClickOpen
+                : () => {
+                    navigate("/map");
+                  }
+            }
+            color="primary"
+            variant="contained"
             state={{
               img: MyContents.ultimo ? MyContents.ultimo.imagem : null,
               description: MyContents.ultimo
@@ -145,16 +157,8 @@ export default function Home() {
                 : null,
             }}
           >
-            <module.Button
-              sx={{
-                marginTop: 1,
-              }}
-              color="primary"
-              variant="contained"
-            >
-              Ir para Atividade
-            </module.Button>
-          </module.Link>
+            Ir para Atividade
+          </module.Button>
         </module.ThemeProvider>
       </module.Grid>
       <Tiny

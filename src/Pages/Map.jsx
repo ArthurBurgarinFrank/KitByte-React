@@ -40,7 +40,6 @@ export default function Map() {
 
   return (
     <div className="removeScroll">
-      {!id && !description ? <module.Navigate to="/" /> : null}
       <module.Grid>
         <module.Grid
           sx={{
