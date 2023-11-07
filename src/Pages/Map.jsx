@@ -12,8 +12,8 @@ export default function Map() {
 
   async function myFunc() {
     const req = id
-      ? `https://api-interdisciplinar.onrender.com/api/app/currentclass?user_id=1&course_id=${id}`
-      : `https://api-interdisciplinar.onrender.com/api/app/currentclass?user_id=1&course_id=1`;
+      ? `https://api-interdisciplinar.onrender.com/api/app/currentclass?email=1&course_id=${id}`
+      : `https://api-interdisciplinar.onrender.com/api/app/currentclass?email=1&course_id=1`;
     await module
       .axios({
         method: "GET",
