@@ -38,7 +38,7 @@ export default function Ranking() {
         flexDirection: "column",
         gap: "8%",
         backgroundColor: "#F3F3F3",
-        paddingBottom: 15
+        paddingTop: 10
       }}
     >
       <module.Grid
@@ -70,7 +70,7 @@ export default function Ranking() {
           gap: 3,
           width: "100%",
           alignItems: "center",
-          paddingBottom: 10
+          paddingBottom: 12
         }}
       >
         {Players}

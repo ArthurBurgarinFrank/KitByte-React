@@ -1,4 +1,3 @@
-import module from "../dependencies";
 import Footer from "../Components/footer";
 
 export default function Video() {
