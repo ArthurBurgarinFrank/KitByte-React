@@ -1,3 +1,4 @@
+
 # Projeto interdisciplinar Kitbyte - Tech
 
 O projeto se trata da parte em react do nosso aplicativo (Kitbyte).
@@ -34,3 +35,6 @@ npm start
 
 ## Conclusão
 Após os passos acima você terá o react funcionando em seu dispositivo. 
+
+
+
