@@ -29,6 +29,7 @@ const Courses = () => {
       title={"Aula"}
       description={object.app}
       img={object.foto_curso}
+      id={object.id}
       bdRadius={"100%"}
       bgColor={"#2880F2"}
       key={index}

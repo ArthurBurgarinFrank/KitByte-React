@@ -1,8 +1,3 @@
-import React from "react";
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogTitle from "@mui/material/DialogTitle";
-
 import module from "../dependencies";
 import Tiny from "../Components/tinyBox";
 import ImgTask from "../assets/Images/imgTask.png";
@@ -90,21 +85,21 @@ export default function Home() {
         paddingBottom: 15
       }}
     >
-      <Dialog
+      <module.Dialog
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
         open={Open}
       >
-        <DialogTitle id="alert-dialog-title">
+        <module.DialogTitle id="alert-dialog-title">
           {"Nenhum curso em progresso"}
-        </DialogTitle>
+        </module.DialogTitle>
 
-        <DialogActions>
+        <module.DialogActions>
           <module.Button onClick={handleClose} autoFocus>
             Ok
           </module.Button>
-        </DialogActions>
-      </Dialog>
+        </module.DialogActions>
+      </module.Dialog>
 
       <module.Grid
         sx={{

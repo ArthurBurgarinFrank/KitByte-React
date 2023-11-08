@@ -6,6 +6,9 @@ import { Link, useSearchParams, Navigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import axios from "axios";
 import { useNavigate } from "react-router";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogTitle from "@mui/material/DialogTitle";
 
 module = {
     Grid,
@@ -20,6 +23,9 @@ module = {
     useSearchParams,
     Navigate,
     useCallback,
-    useNavigate
+    useNavigate,
+    Dialog, 
+    DialogActions,
+    DialogTitle
 }
 export default module

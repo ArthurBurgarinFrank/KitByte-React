@@ -1,19 +1,20 @@
 import module from "../dependencies";
 import Tiny from "../Components/tinyBox";
 import imgVideo from "../assets/Images/imgVideo.png";
-import Footer from "../Components/footer";  
+import Footer from "../Components/footer";
 
 const Lesson = () => {
   const location = module.useLocation();
   const img = location.state ? location.state.img : null;
   const description = location.state ? location.state.description : null;
+  const id = location.state ? location.state.id : null;
   const [MyContents, setMyContents] = module.useState();
 
   async function myFunc() {
     await module
       .axios({
         method: "get",
-        url: "https://api-interdisciplinar.onrender.com/api/app/lessons?id=1",
+        url: `https://api-interdisciplinar.onrender.com/api/app/lessons?id=${id}`,
       })
       .then((response) => {
         setMyContents(response.data);
@@ -22,9 +23,29 @@ const Lesson = () => {
         console.error("Error:", error);
       });
   }
+
+  const [Email, setEmail] = module.useState("");
+  module.useEffect(() => {
+    if (window.Android) {
+      const userEmail = window.Android.parametrosFront();
+      setEmail(userEmail);
+    }
+  }, []);
+
+  async function myFuncAlter() {
+    try {
+      await module.axios({
+        url: `https://api-interdisciplinar.onrender.com/api/app/setlastclass?course_id=${id}&email=${Email}`,
+      });
+    } catch (error) {
+      console.error("Erro na solicitação:", error);
+    }
+  }
+
   module.useEffect(() => {
     myFunc();
-  }, []);
+    myFuncAlter();
+  }, [Email]);
 
   var lessons;
   if (MyContents) {
@@ -53,7 +74,7 @@ const Lesson = () => {
         gap: 4,
         paddingBottom: 10,
         paddingBottom: 15,
-        marginTop: 6.5
+        marginTop: 6.5,
       }}
     >
       {!img ? <module.Navigate to="/" /> : null}
