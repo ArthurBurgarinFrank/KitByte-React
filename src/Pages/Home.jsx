@@ -1,12 +1,7 @@
-import React from "react";
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogTitle from "@mui/material/DialogTitle";
-
 import module from "../dependencies";
 import Tiny from "../Components/tinyBox";
 import ImgTask from "../assets/Images/imgTask.png";
-import { useNavigate } from "react-router";
+import Footer from "../Components/footer";
 
 export default function Home() {
   const [MyContents, setMyContents] = module.useState();
@@ -23,10 +18,9 @@ export default function Home() {
 
   async function myFunc() {
     await module
-      .axios({
-        method: "get",
-        url: `https://api-interdisciplinar.onrender.com/api/app/suggestedcourse?email=${Email}`,
-      })
+      .axios(
+        `https://api-interdisciplinar.onrender.com/api/app/suggestedcourse?email=${Email}`
+      )
       .then((response) => {
         setMyContents(response.data);
         if (MyContents.ultimo) {
@@ -41,7 +35,7 @@ export default function Home() {
     myFunc();
   }, [Email]);
 
-  const navigate = useNavigate();
+  const navigate = module.useNavigate();
 
   const buttonThemeReturn = module.createTheme({
     palette: {
@@ -76,7 +70,7 @@ export default function Home() {
   };
 
   if (!MyContents) {
-    return <p>Email: {Email}</p>;
+    return;
   }
   return (
     <module.Grid
@@ -87,23 +81,24 @@ export default function Home() {
         gap: 3,
         marginTop: "20%",
         paddingBottom: 10,
+        paddingBottom: 15,
       }}
     >
-      <Dialog
+      <module.Dialog
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
         open={Open}
       >
-        <DialogTitle id="alert-dialog-title">
+        <module.DialogTitle id="alert-dialog-title">
           {"Nenhum curso em progresso"}
-        </DialogTitle>
+        </module.DialogTitle>
 
-        <DialogActions>
+        <module.DialogActions>
           <module.Button onClick={handleClose} autoFocus>
             Ok
           </module.Button>
-        </DialogActions>
-      </Dialog>
+        </module.DialogActions>
+      </module.Dialog>
 
       <module.Grid
         sx={{
@@ -181,6 +176,7 @@ export default function Home() {
         contrast={false}
         fullWidth={false}
       />
+      <Footer />
     </module.Grid>
   );
 }

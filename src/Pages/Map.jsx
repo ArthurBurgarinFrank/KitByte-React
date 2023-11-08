@@ -1,11 +1,11 @@
 import module from "../dependencies";
 import Tiny from "../Components/tinyBox";
 import MapComp from "../Components/MapComponent";
-import { useLocation } from "react-router-dom";
+import Footer from "../Components/footer";
 
 export default function Map() {
   const [MyContents, setMyContents] = module.useState();
-  const location = useLocation();
+  const location = module.useLocation();
   var img, description, id;
   if (location.state) {
     img = location.state.img;
@@ -28,10 +28,9 @@ export default function Map() {
   async function myFunc() {
     if (id) {
       await module
-        .axios({
-          method: "GET",
-          url: `https://api-interdisciplinar.onrender.com/api/app/currentclass?email=${Email}&course_id=${id}`,
-        })
+        .axios(
+          `https://api-interdisciplinar.onrender.com/api/app/currentclass?email=${Email}&course_id=${id}`
+        )
         .then((response) => {
           setMyContents(response.data);
         })
@@ -56,12 +55,14 @@ export default function Map() {
             display: "flex",
             justifyContent: "center",
             marginTop: 6.5,
+            paddingBottom: 15,
           }}
         >
           <Tiny
             title={"Exercícios"}
             description={MyContents ? MyContents.nome_curso : description}
             img={MyContents ? MyContents.imagem : img}
+            id={id ? id : null}
             contrast={true}
             fullWidth={true}
             text={"Continue"}
@@ -76,6 +77,7 @@ export default function Map() {
           />
         </module.Grid>
       </module.Grid>
+      <Footer />
     </div>
   );
 }

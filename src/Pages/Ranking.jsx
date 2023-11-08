@@ -1,32 +1,38 @@
 import "../index.css";
-import module from "../dependencies"
+import module from "../dependencies";
 import trophyImg from "../assets/Images/trophy.png";
 import Player from "../Components/player.jsx";
+import Footer from "../Components/footer";
 
 export default function Ranking() {
-
-  const [MyPlayers, setMyPlayers] = module.useState()
-  const [Players, setPlayers] = module.useState()
+  const [MyPlayers, setMyPlayers] = module.useState();
+  const [Players, setPlayers] = module.useState();
 
   async function myFunc() {
-    
-    await module.axios({
-      method: "get",
-      url: "https://api-interdisciplinar.onrender.com/api/app/ranking",
-    })
+    await module
+      .axios("https://api-interdisciplinar.onrender.com/api/app/ranking")
       .then((response) => {
-        setMyPlayers(response.data)
-        setPlayers(MyPlayers.map((object, index) => (
-          <Player key={index} index={index + 1} background={"#FFFFFF"} color={"#2880F2"} player={object} fullWidth={false} />
-        )))
+        setMyPlayers(response.data);
+        setPlayers(
+          MyPlayers.map((object, index) => (
+            <Player
+              key={index}
+              index={index + 1}
+              background={"#FFFFFF"}
+              color={"#2880F2"}
+              player={object}
+              fullWidth={false}
+            />
+          ))
+        );
       })
       .catch((error) => {
         console.error("Error:", error);
       });
-  } 
+  }
   module.useEffect(() => {
-    myFunc()
-  }, [MyPlayers])
+    myFunc();
+  }, [MyPlayers]);
 
   return (
     <module.Grid
@@ -36,7 +42,7 @@ export default function Ranking() {
         display: "flex",
         flexDirection: "column",
         gap: "8%",
-        backgroundColor: "#F3F3F3"
+        backgroundColor: "#F3F3F3",
       }}
     >
       <module.Grid
@@ -56,7 +62,9 @@ export default function Ranking() {
               <b>Ranking Kitbyte</b>
             </p>
             <img src={trophyImg} alt="imagem de troféu" />
-            <p><b>LIGA: OURO</b></p>
+            <p>
+              <b>LIGA: OURO</b>
+            </p>
           </div>
         </module.Grid>
       </module.Grid>
@@ -68,11 +76,13 @@ export default function Ranking() {
           gap: 3,
           width: "100%",
           alignItems: "center",
-          paddingBottom: 10
+          paddingBottom: 12,
+          paddingTop: 15,
         }}
       >
         {Players}
       </module.Grid>
+      <Footer />
     </module.Grid>
   );
 }

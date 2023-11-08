@@ -3,23 +3,31 @@ import Tiny from "../Components/tinyBox";
 import Answer from "../Components/Quiz/Answer";
 import Question from "../Components/Quiz/Question";
 import Result from "../Components/Quiz/Result";
-import { useLocation } from "react-router-dom";
+import Footer from "../Components/footer";
 
 export default function Quiz() {
   const [Clicked, setClicked] = module.useState(false);
   const [MyContents, setMyContents] = module.useState();
   const [Response, setResponse] = module.useState();
 
-  const location = useLocation();
+  const [Email, setEmail] = module.useState("");
+  module.useEffect(() => {
+    if (window.Android) {
+      const userEmail = window.Android.parametrosFront();
+      setEmail(userEmail);
+    }
+  }, []);
+
+  const location = module.useLocation();
   const description = location.state ? location.state.description : null;
   const img = location.state ? location.state.img : null;
+  const id = location.state ? location.state.id : null;
 
   async function myFunc() {
     await module
-      .axios({
-        method: "get",
-        url: "https://api-interdisciplinar.onrender.com/api/app/exercise?class_id=4",
-      })
+      .axios(
+        `https://api-interdisciplinar.onrender.com/api/app/exercise?course_id=${id}&email=${Email}`
+      )
       .then((response) => {
         setMyContents(response.data);
       })
@@ -29,7 +37,7 @@ export default function Quiz() {
   }
   module.useEffect(() => {
     myFunc();
-  }, []);
+  }, [Email]);
 
   const handleOpen = (value) => {
     if (!Clicked) {
@@ -49,8 +57,30 @@ export default function Quiz() {
     }, "1500");
   }, [Clicked]);
 
+  const navigate = module.useNavigate();
+
+  const handlePage = () => {
+    navigate("/exercises");
+  };
+
   if (!MyContents) {
-    return null;
+    return (
+      <module.Dialog
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+        open={true}
+      >
+        <module.DialogTitle id="alert-dialog-title">
+          {"Nenhum exercício disponível para esse curso"}
+        </module.DialogTitle>
+
+        <module.DialogActions>
+          <module.Button onClick={handlePage} autoFocus>
+            Ok
+          </module.Button>
+        </module.DialogActions>
+      </module.Dialog>
+    );
   }
   return (
     <div className="removeScroll">
@@ -59,6 +89,7 @@ export default function Quiz() {
           marginTop: 6.5,
           display: "flex",
           flexDirection: "column",
+          paddingBottom: 15,
         }}
       >
         {!img ? <module.Navigate to="/" /> : null}
@@ -111,6 +142,7 @@ export default function Quiz() {
         </module.Grid>
         {Clicked ? <Result answer={Response} /> : null}
       </module.Grid>
+      <Footer />
     </div>
   );
 }
