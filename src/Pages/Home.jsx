@@ -76,7 +76,7 @@ export default function Home() {
   };
 
   if (!MyContents) {
-    return;
+    return <p>Email: {Email}</p>;
   }
   return (
     <module.Grid
