@@ -25,7 +25,7 @@ export default function Home() {
     await module
       .axios({
         method: "get",
-        url: `https://api-interdisciplinar.onrender.com/api/app/suggestedcourse?email=clemennilda@gmail.com`,
+        url: `https://api-interdisciplinar.onrender.com/api/app/suggestedcourse?email=${Email}`,
       })
       .then((response) => {
         setMyContents(response.data);
@@ -145,17 +145,17 @@ export default function Home() {
               !IsNull
                 ? handleClickOpen
                 : () => {
-                    navigate("/map");
+                    navigate(
+                      `/map?img=${MyContents.ultimo.imagem}&description=${MyContents.ultimo.nome_curso}`
+                    );
                   }
             }
             color="primary"
             variant="contained"
-            state={{
-              img: MyContents.ultimo ? MyContents.ultimo.imagem : null,
-              description: MyContents.ultimo
-                ? MyContents.ultimo.nome_curso
-                : null,
-            }}
+            img={MyContents.ultimo ? MyContents.ultimo.imagem : null}
+            description={
+              MyContents.ultimo ? MyContents.ultimo.nome_curso : null
+            }
           >
             Ir para Atividade
           </module.Button>
