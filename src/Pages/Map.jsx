@@ -6,9 +6,16 @@ import { useLocation } from "react-router-dom";
 export default function Map() {
   const [MyContents, setMyContents] = module.useState();
   const location = useLocation();
-  const img = location.state ? location.state.img : null;
-  const description = location.state ? location.state.description : null;
-  const id = location.state ? location.state.id : null;
+  var img, description, id;
+  if (location.state) {
+    img = location.state.img;
+    description = location.state.description;
+    id = location.state.id;
+  } else {
+    const searchParams = new URLSearchParams(location.search);
+    img = searchParams.get("img");
+    description = searchParams.get("description");
+  }
 
   const [Email, setEmail] = module.useState("");
   module.useEffect(() => {

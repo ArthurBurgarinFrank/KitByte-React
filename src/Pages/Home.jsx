@@ -1,12 +1,19 @@
 import React from "react";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogTitle from "@mui/material/DialogTitle";
+
 import module from "../dependencies";
 import Tiny from "../Components/tinyBox";
 import ImgTask from "../assets/Images/imgTask.png";
+import { useNavigate } from "react-router";
 
 export default function Home() {
   const [MyContents, setMyContents] = module.useState();
-
+  const [IsNull, setIsNull] = module.useState(true);
   const [Email, setEmail] = module.useState("");
+  const [Open, setOpen] = module.useState(false);
+
   module.useEffect(() => {
     if (window.Android) {
       const userEmail = window.Android.parametrosFront();
@@ -22,6 +29,9 @@ export default function Home() {
       })
       .then((response) => {
         setMyContents(response.data);
+        if (MyContents.ultimo) {
+          setIsNull(false);
+        }
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -30,6 +40,8 @@ export default function Home() {
   module.useEffect(() => {
     myFunc();
   }, []);
+
+  const navigate = useNavigate();
 
   const buttonThemeReturn = module.createTheme({
     palette: {
@@ -56,6 +68,13 @@ export default function Home() {
     },
   });
 
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   if (!MyContents) {
     return;
   }
@@ -70,6 +89,22 @@ export default function Home() {
         paddingBottom: 10,
       }}
     >
+      <Dialog
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+        open={Open}
+      >
+        <DialogTitle id="alert-dialog-title">
+          {"Nenhum curso em progresso"}
+        </DialogTitle>
+
+        <DialogActions>
+          <module.Button onClick={handleClose} autoFocus>
+            Ok
+          </module.Button>
+        </DialogActions>
+      </Dialog>
+
       <module.Grid
         sx={{
           width: "90vw",
@@ -105,23 +140,25 @@ export default function Home() {
         </h2>
 
         <module.ThemeProvider theme={buttonThemeReturn}>
-          <module.Link
-            to="/map"
-            state={{
-              img: MyContents.ultimo.imagem,
-              description: MyContents.ultimo.nome_curso,
-            }}
+          <module.Button
+            onClick={
+              !IsNull
+                ? handleClickOpen
+                : () => {
+                    navigate(
+                      `/map?img=${MyContents.ultimo.imagem}&description=${MyContents.ultimo.nome_curso}`
+                    );
+                  }
+            }
+            color="primary"
+            variant="contained"
+            img={MyContents.ultimo ? MyContents.ultimo.imagem : null}
+            description={
+              MyContents.ultimo ? MyContents.ultimo.nome_curso : null
+            }
           >
-            <module.Button
-              sx={{
-                marginTop: 1,
-              }}
-              color="primary"
-              variant="contained"
-            >
-              Ir para Atividade
-            </module.Button>
-          </module.Link>
+            Ir para Atividade
+          </module.Button>
         </module.ThemeProvider>
       </module.Grid>
       <Tiny
