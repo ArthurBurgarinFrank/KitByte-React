@@ -39,7 +39,7 @@ export default function Home() {
   }
   module.useEffect(() => {
     myFunc();
-  }, []);
+  }, [Email]);
 
   const navigate = useNavigate();
 
