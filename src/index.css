@@ -57,19 +57,16 @@ img {
   background-color: #2880f2;
   display: flex;
   justify-content: space-around;
-  padding-top: 10px;
   z-index: 10;
 }
 .footer-button {
   text-align: center;
   color: white;
-}
-.footer-button a {
-  text-decoration: none;
-  color: white;
+  padding-bottom: 10px;
+  padding-top: 5px;
 }
 .caption {
-  margin-top: 5px;
+  color: white;
 }
 .imgFooter{
   width: 75%;
