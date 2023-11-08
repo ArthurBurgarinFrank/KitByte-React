@@ -2,6 +2,7 @@ import module from "../dependencies";
 import Tiny from "../Components/tinyBox";
 import { useLocation } from "react-router-dom";
 import imgVideo from "../assets/Images/imgVideo.png";
+import Footer from "../Components/footer";  
 
 const Lesson = () => {
   const location = useLocation();
@@ -52,7 +53,8 @@ const Lesson = () => {
         flexDirection: "column",
         gap: 4,
         paddingBottom: 10,
-        marginTop: 6.5,
+        paddingBottom: 15,
+        marginTop: 6.5
       }}
     >
       {!img ? <module.Navigate to="/" /> : null}
@@ -119,6 +121,7 @@ const Lesson = () => {
         </module.Grid>
       </module.Grid>
       {lessons}
+      <Footer />
     </module.Grid>
   );
 };
