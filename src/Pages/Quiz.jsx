@@ -4,6 +4,10 @@ import Answer from "../Components/Quiz/Answer";
 import Question from "../Components/Quiz/Question";
 import Result from "../Components/Quiz/Result";
 import Footer from "../Components/footer";
+import React from "react";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogTitle from "@mui/material/DialogTitle";
 
 export default function Quiz() {
   const [Clicked, setClicked] = module.useState(false);
@@ -58,8 +62,30 @@ export default function Quiz() {
     }, "1500");
   }, [Clicked]);
 
+  const navigate = module.useNavigate();
+
+  const handlePage = () => {
+    navigate("/exercises")
+  }
+
   if (!MyContents) {
-    return <p>Nenhum curso disponível para essa aula</p>;
+    return (
+      <Dialog
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+        open={true}
+      >
+        <DialogTitle id="alert-dialog-title">
+          {"Nenhum exercício disponível para esse curso"}
+        </DialogTitle>
+
+        <DialogActions>
+          <module.Button onClick={handlePage} autoFocus>
+            Ok
+          </module.Button>
+        </DialogActions>
+      </Dialog>
+    );
   }
   return (
     <div className="removeScroll">
@@ -68,7 +94,7 @@ export default function Quiz() {
           marginTop: 6.5,
           display: "flex",
           flexDirection: "column",
-          paddingBottom: 15
+          paddingBottom: 15,
         }}
       >
         {!img ? <module.Navigate to="/" /> : null}
