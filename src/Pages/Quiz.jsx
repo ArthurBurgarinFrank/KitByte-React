@@ -25,10 +25,9 @@ export default function Quiz() {
 
   async function myFunc() {
     await module
-      .axios({
-        method: "get",
-        url: `https://api-interdisciplinar.onrender.com/api/app/exercise?course_id=${id}&email=${Email}`,
-      })
+      .axios(
+        `https://api-interdisciplinar.onrender.com/api/app/exercise?course_id=${id}&email=${Email}`
+      )
       .then((response) => {
         setMyContents(response.data);
       })
@@ -61,8 +60,8 @@ export default function Quiz() {
   const navigate = module.useNavigate();
 
   const handlePage = () => {
-    navigate("/exercises")
-  }
+    navigate("/exercises");
+  };
 
   if (!MyContents) {
     return (

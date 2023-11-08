@@ -34,9 +34,9 @@ const Lesson = () => {
 
   async function myFuncAlter() {
     try {
-      await module.axios({
-        url: `https://api-interdisciplinar.onrender.com/api/app/setlastclass?course_id=${id}&email=${Email}`,
-      });
+      await module.axios(
+        `https://api-interdisciplinar.onrender.com/api/app/setlastclass?course_id=${id}&email=${Email}`
+      );
     } catch (error) {
       console.error("Erro na solicitação:", error);
     }

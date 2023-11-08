@@ -18,10 +18,9 @@ export default function Home() {
 
   async function myFunc() {
     await module
-      .axios({
-        method: "get",
-        url: `https://api-interdisciplinar.onrender.com/api/app/suggestedcourse?email=${Email}`,
-      })
+      .axios(
+        `https://api-interdisciplinar.onrender.com/api/app/suggestedcourse?email=${Email}`
+      )
       .then((response) => {
         setMyContents(response.data);
         if (MyContents.ultimo) {
@@ -71,7 +70,7 @@ export default function Home() {
   };
 
   if (!MyContents) {
-    return 
+    return;
   }
   return (
     <module.Grid
@@ -82,7 +81,7 @@ export default function Home() {
         gap: 3,
         marginTop: "20%",
         paddingBottom: 10,
-        paddingBottom: 15
+        paddingBottom: 15,
       }}
     >
       <module.Dialog

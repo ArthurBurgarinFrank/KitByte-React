@@ -28,10 +28,9 @@ export default function Map() {
   async function myFunc() {
     if (id) {
       await module
-        .axios({
-          method: "GET",
-          url: `https://api-interdisciplinar.onrender.com/api/app/currentclass?email=${Email}&course_id=${id}`,
-        })
+        .axios(
+          `https://api-interdisciplinar.onrender.com/api/app/currentclass?email=${Email}&course_id=${id}`
+        )
         .then((response) => {
           setMyContents(response.data);
         })
@@ -56,7 +55,7 @@ export default function Map() {
             display: "flex",
             justifyContent: "center",
             marginTop: 6.5,
-            paddingBottom: 15
+            paddingBottom: 15,
           }}
         >
           <Tiny
