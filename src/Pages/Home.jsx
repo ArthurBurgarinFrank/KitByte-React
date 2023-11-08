@@ -6,7 +6,6 @@ import DialogTitle from "@mui/material/DialogTitle";
 import module from "../dependencies";
 import Tiny from "../Components/tinyBox";
 import ImgTask from "../assets/Images/imgTask.png";
-import { useNavigate } from "react-router";
 import Footer from "../Components/footer";
 
 export default function Home() {
@@ -42,7 +41,7 @@ export default function Home() {
     myFunc();
   }, [Email]);
 
-  const navigate = useNavigate();
+  const navigate = module.useNavigate();
 
   const buttonThemeReturn = module.createTheme({
     palette: {
@@ -77,7 +76,7 @@ export default function Home() {
   };
 
   if (!MyContents) {
-    return <p>Email: {Email}</p>;
+    return 
   }
   return (
     <module.Grid

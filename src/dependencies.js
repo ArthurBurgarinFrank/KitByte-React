@@ -5,6 +5,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Link, useSearchParams, Navigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import axios from "axios";
+import { useNavigate } from "react-router";
 
 module = {
     Grid,
@@ -18,6 +19,7 @@ module = {
     axios,
     useSearchParams,
     Navigate,
-    useCallback
+    useCallback,
+    useNavigate
 }
 export default module

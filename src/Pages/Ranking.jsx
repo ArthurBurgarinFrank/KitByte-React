@@ -37,8 +37,7 @@ export default function Ranking() {
         display: "flex",
         flexDirection: "column",
         gap: "8%",
-        backgroundColor: "#F3F3F3",
-        paddingTop: 10
+        backgroundColor: "#F3F3F3"
       }}
     >
       <module.Grid
@@ -50,7 +49,7 @@ export default function Ranking() {
         <module.Grid
           item
           sx={{
-            height: "100%",
+            height: "100%"
           }}
         >
           <div id="headerRank">
@@ -70,7 +69,8 @@ export default function Ranking() {
           gap: 3,
           width: "100%",
           alignItems: "center",
-          paddingBottom: 12
+          paddingBottom: 12,
+          paddingTop: 15
         }}
       >
         {Players}

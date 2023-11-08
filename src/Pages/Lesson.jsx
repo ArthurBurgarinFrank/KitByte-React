@@ -1,11 +1,10 @@
 import module from "../dependencies";
 import Tiny from "../Components/tinyBox";
-import { useLocation } from "react-router-dom";
 import imgVideo from "../assets/Images/imgVideo.png";
 import Footer from "../Components/footer";  
 
 const Lesson = () => {
-  const location = useLocation();
+  const location = module.useLocation();
   const img = location.state ? location.state.img : null;
   const description = location.state ? location.state.description : null;
   const [MyContents, setMyContents] = module.useState();

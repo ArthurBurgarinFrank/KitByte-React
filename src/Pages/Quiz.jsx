@@ -4,7 +4,6 @@ import Answer from "../Components/Quiz/Answer";
 import Question from "../Components/Quiz/Question";
 import Result from "../Components/Quiz/Result";
 import Footer from "../Components/footer";
-import { useLocation } from "react-router-dom";
 
 export default function Quiz() {
   const [Clicked, setClicked] = module.useState(false);
@@ -19,7 +18,7 @@ export default function Quiz() {
     }
   }, []);
 
-  const location = useLocation();
+  const location = module.useLocation();
   const description = location.state ? location.state.description : null;
   const img = location.state ? location.state.img : null;
   const id = location.state ? location.state.id : null;
@@ -60,7 +59,7 @@ export default function Quiz() {
   }, [Clicked]);
 
   if (!MyContents) {
-    return null;
+    return <p>Nenhum curso disponível para essa aula</p>;
   }
   return (
     <div className="removeScroll">

@@ -3,10 +3,9 @@ import inicio from "../assets/Images/inicio.png";
 import ranking from "../assets/Images/ranking.png";
 import tarefas from "../assets/Images/tarefas.png";
 import aulas from "../assets/Images/aulas.png";
-import { useNavigate } from "react-router";
 
 const Footer = () => {
-  const navigate = useNavigate();
+  const navigate = module.useNavigate();
 
   return (
     <footer className="footer">

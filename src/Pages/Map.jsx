@@ -1,12 +1,11 @@
 import module from "../dependencies";
 import Tiny from "../Components/tinyBox";
 import MapComp from "../Components/MapComponent";
-import { useLocation } from "react-router-dom";
 import Footer from "../Components/footer";
 
 export default function Map() {
   const [MyContents, setMyContents] = module.useState();
-  const location = useLocation();
+  const location = module.useLocation();
   var img, description, id;
   if (location.state) {
     img = location.state.img;
@@ -45,10 +44,6 @@ export default function Map() {
   module.useEffect(() => {
     myFunc();
   }, [Email]);
-
-  if (id) {
-    console.log(id);
-  }
 
   return (
     <div className="removeScroll">
