@@ -8,6 +8,8 @@ import Exercises from "./Pages/Exercises";
 import Lesson from "./Pages/Lesson"
 import Video from "./Pages/Video"
 
+// teste grilo 
+
 export default function AppRoutes() {
   return (
     <BrowserRouter>

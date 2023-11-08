@@ -1,15 +1,13 @@
 import module from "../dependencies";
 import Tiny from "../Components/tinyBox";
+import Footer from "../Components/footer";
 
 const Courses = () => {
   const [MyContents, setMyContents] = module.useState();
 
   async function myFunc() {
     await module
-      .axios({
-        method: "get",
-        url: "https://api-interdisciplinar.onrender.com/api/app/all",
-      })
+      .axios("https://api-interdisciplinar.onrender.com/api/app/all")
       .then((response) => {
         setMyContents(response.data);
       })
@@ -21,21 +19,22 @@ const Courses = () => {
     myFunc();
   }, []);
 
-  var lessons
+  var lessons;
   if (MyContents) {
-  lessons = MyContents.map((object, index) => (
-    <Tiny
-      title={"Aula"}
-      description={object.app}
-      img={object.foto_curso}
-      bdRadius={"100%"}
-      bgColor={"#2880F2"}
-      key={index}
-      text={"Conheça!"}
-      contrast={true}
-      fullWidth={false}
-    />
-  ));
+    lessons = MyContents.map((object, index) => (
+      <Tiny
+        title={"Aula"}
+        description={object.app}
+        img={object.foto_curso}
+        id={object.id}
+        bdRadius={"100%"}
+        bgColor={"#2880F2"}
+        key={index}
+        text={"Conheça!"}
+        contrast={true}
+        fullWidth={false}
+      />
+    ));
   }
 
   return (
@@ -46,9 +45,11 @@ const Courses = () => {
         flexDirection: "column",
         gap: 4,
         padding: 10,
+        paddingBottom: 15,
       }}
     >
       {lessons}
+      <Footer />
     </module.Grid>
   );
 };

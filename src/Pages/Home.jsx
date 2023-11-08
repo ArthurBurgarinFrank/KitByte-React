@@ -1,19 +1,31 @@
-import React from "react";
 import module from "../dependencies";
 import Tiny from "../Components/tinyBox";
 import ImgTask from "../assets/Images/imgTask.png";
+import Footer from "../Components/footer";
 
 export default function Home() {
   const [MyContents, setMyContents] = module.useState();
+  const [IsNull, setIsNull] = module.useState(true);
+  const [Email, setEmail] = module.useState("");
+  const [Open, setOpen] = module.useState(false);
+
+  module.useEffect(() => {
+    if (window.Android) {
+      const userEmail = window.Android.parametrosFront();
+      setEmail(userEmail);
+    }
+  }, []);
 
   async function myFunc() {
     await module
-      .axios({
-        method: "get",
-        url: "https://api-interdisciplinar.onrender.com/api/app/suggestedcourse",
-      })
+      .axios(
+        `https://api-interdisciplinar.onrender.com/api/app/suggestedcourse?email=${Email}`
+      )
       .then((response) => {
         setMyContents(response.data);
+        if (MyContents.ultimo) {
+          setIsNull(false);
+        }
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -21,7 +33,9 @@ export default function Home() {
   }
   module.useEffect(() => {
     myFunc();
-  }, []);
+  }, [Email]);
+
+  const navigate = module.useNavigate();
 
   const buttonThemeReturn = module.createTheme({
     palette: {
@@ -48,34 +62,16 @@ export default function Home() {
     },
   });
 
-  var courses;
-  if (MyContents) {
-    courses = MyContents.map((object, index) => (
-      <Tiny
-        title={object.app}
-        description={object.descricao}
-        img={object.foto_curso}
-        bdRadius={"100%"}
-        bgColor={"#2880F2"}
-        key={index}
-        text={"Conheça!"}
-        contrast={false}
-        fullWidth={false}
-      />
-    ));
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  if (!MyContents) {
+    return;
   }
-
-  const [txt, setTxt] = module.useState("?");
-
-  module.useEffect(() => {
-    if (window.Android) {
-      const guardianEmail = window.Android.parametrosFront();
-      setTxt(guardianEmail);
-    } else {
-      setTxt("KKKKKKKKKKKJJJJJJJJJJJJJJJJJK");
-    }
-  }, []);
-
   return (
     <module.Grid
       sx={{
@@ -85,8 +81,25 @@ export default function Home() {
         gap: 3,
         marginTop: "20%",
         paddingBottom: 10,
+        paddingBottom: 15,
       }}
     >
+      <module.Dialog
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+        open={Open}
+      >
+        <module.DialogTitle id="alert-dialog-title">
+          {"Nenhum curso em progresso"}
+        </module.DialogTitle>
+
+        <module.DialogActions>
+          <module.Button onClick={handleClose} autoFocus>
+            Ok
+          </module.Button>
+        </module.DialogActions>
+      </module.Dialog>
+
       <module.Grid
         sx={{
           width: "90vw",
@@ -118,24 +131,52 @@ export default function Home() {
         <h2
           style={{ textAlign: "center", fontWeight: "normal", color: "white" }}
         >
-          {txt}:
+          Continue com sua última atividade:
         </h2>
 
         <module.ThemeProvider theme={buttonThemeReturn}>
-          <module.Link to="/map">
-            <module.Button
-              sx={{
-                marginTop: 1,
-              }}
-              color="primary"
-              variant="contained"
-            >
-              Ir para Atividade
-            </module.Button>
-          </module.Link>
+          <module.Button
+            onClick={
+              !IsNull
+                ? handleClickOpen
+                : () => {
+                    navigate(
+                      `/map?img=${MyContents.ultimo.imagem}&description=${MyContents.ultimo.nome_curso}`
+                    );
+                  }
+            }
+            color="primary"
+            variant="contained"
+            img={MyContents.ultimo ? MyContents.ultimo.imagem : null}
+            description={
+              MyContents.ultimo ? MyContents.ultimo.nome_curso : null
+            }
+          >
+            Ir para Atividade
+          </module.Button>
         </module.ThemeProvider>
       </module.Grid>
-      {courses}
+      <Tiny
+        title={MyContents.sugerido1.app}
+        description={MyContents.sugerido1.descricao}
+        img={MyContents.sugerido1.foto_curso}
+        bdRadius={"100%"}
+        bgColor={"#2880F2"}
+        text={"Conheça!"}
+        contrast={false}
+        fullWidth={false}
+      />
+      <Tiny
+        title={MyContents.sugerido2.app}
+        description={MyContents.sugerido2.descricao}
+        img={MyContents.sugerido2.foto_curso}
+        bdRadius={"100%"}
+        bgColor={"#2880F2"}
+        text={"Conheça!"}
+        contrast={false}
+        fullWidth={false}
+      />
+      <Footer />
     </module.Grid>
   );
 }

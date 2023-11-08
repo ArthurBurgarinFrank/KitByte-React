@@ -1,15 +1,13 @@
 import module from "../dependencies";
 import Tiny from "../Components/tinyBox";
+import Footer from "../Components/footer";
 
 const Exercises = () => {
   const [MyContents, setMyContents] = module.useState();
 
   async function myFunc() {
     await module
-      .axios({
-        method: "get",
-        url: "https://api-interdisciplinar.onrender.com/api/app/all",
-      })
+      .axios("https://api-interdisciplinar.onrender.com/api/app/all")
       .then((response) => {
         setMyContents(response.data);
       })
@@ -47,9 +45,11 @@ const Exercises = () => {
         flexDirection: "column",
         gap: 4,
         padding: 10,
+        paddingBottom: 15,
       }}
     >
       {exercise}
+      <Footer />
     </module.Grid>
   );
 };

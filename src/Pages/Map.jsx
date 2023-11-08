@@ -1,35 +1,48 @@
 import module from "../dependencies";
 import Tiny from "../Components/tinyBox";
 import MapComp from "../Components/MapComponent";
-import { useLocation } from "react-router-dom";
+import Footer from "../Components/footer";
 
 export default function Map() {
   const [MyContents, setMyContents] = module.useState();
-  const location = useLocation();
-  const img = location.state ? location.state.img : null;
-  const description = location.state ? location.state.description : null;
-  const id = location.state ? location.state.id : null;
+  const location = module.useLocation();
+  var img, description, id;
+  if (location.state) {
+    img = location.state.img;
+    description = location.state.description;
+    id = location.state.id;
+  } else {
+    const searchParams = new URLSearchParams(location.search);
+    img = searchParams.get("img");
+    description = searchParams.get("description");
+  }
+
+  const [Email, setEmail] = module.useState("");
+  module.useEffect(() => {
+    if (window.Android) {
+      const userEmail = window.Android.parametrosFront();
+      setEmail(userEmail);
+    }
+  }, []);
 
   async function myFunc() {
-    const req = id
-      ? `https://api-interdisciplinar.onrender.com/api/app/currentclass?user_id=1&course_id=${id}`
-      : `https://api-interdisciplinar.onrender.com/api/app/currentclass?user_id=1&course_id=1`;
-    await module
-      .axios({
-        method: "GET",
-        url: req,
-      })
-      .then((response) => {
-        setMyContents(response.data);
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
+    if (id) {
+      await module
+        .axios(
+          `https://api-interdisciplinar.onrender.com/api/app/currentclass?email=${Email}&course_id=${id}`
+        )
+        .then((response) => {
+          setMyContents(response.data);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+    }
   }
 
   module.useEffect(() => {
     myFunc();
-  }, []);
+  }, [Email]);
 
   return (
     <div className="removeScroll">
@@ -42,12 +55,14 @@ export default function Map() {
             display: "flex",
             justifyContent: "center",
             marginTop: 6.5,
+            paddingBottom: 15,
           }}
         >
           <Tiny
             title={"Exercícios"}
             description={MyContents ? MyContents.nome_curso : description}
             img={MyContents ? MyContents.imagem : img}
+            id={id ? id : null}
             contrast={true}
             fullWidth={true}
             text={"Continue"}
@@ -62,6 +77,7 @@ export default function Map() {
           />
         </module.Grid>
       </module.Grid>
+      <Footer />
     </div>
   );
 }

@@ -18,8 +18,8 @@ const Tiny = (props) => {
   
   var desc
   if (props.description) {
-    if (props.description.length > 36) {
-      desc = props.description.substr(0, 36) + "...";
+    if (props.description.length > 30) {
+      desc = props.description.substr(0, 30) + "...";
     }
   }
 
