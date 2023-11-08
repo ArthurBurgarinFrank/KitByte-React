@@ -1,5 +1,6 @@
 import module from "../dependencies";
 import Tiny from "../Components/tinyBox";
+import Footer from "../Components/footer";
 
 const Courses = () => {
   const [MyContents, setMyContents] = module.useState();
@@ -46,9 +47,11 @@ const Courses = () => {
         flexDirection: "column",
         gap: 4,
         padding: 10,
+        paddingBottom: 15
       }}
     >
       {lessons}
+      <Footer />
     </module.Grid>
   );
 };

@@ -7,6 +7,7 @@ import module from "../dependencies";
 import Tiny from "../Components/tinyBox";
 import ImgTask from "../assets/Images/imgTask.png";
 import { useNavigate } from "react-router";
+import Footer from "../Components/footer";
 
 export default function Home() {
   const [MyContents, setMyContents] = module.useState();
@@ -87,6 +88,7 @@ export default function Home() {
         gap: 3,
         marginTop: "20%",
         paddingBottom: 10,
+        paddingBottom: 15
       }}
     >
       <Dialog
@@ -181,6 +183,7 @@ export default function Home() {
         contrast={false}
         fullWidth={false}
       />
+      <Footer />
     </module.Grid>
   );
 }

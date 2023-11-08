@@ -3,6 +3,7 @@ import Tiny from "../Components/tinyBox";
 import Answer from "../Components/Quiz/Answer";
 import Question from "../Components/Quiz/Question";
 import Result from "../Components/Quiz/Result";
+import Footer from "../Components/footer";
 import { useLocation } from "react-router-dom";
 
 export default function Quiz() {
@@ -10,15 +11,24 @@ export default function Quiz() {
   const [MyContents, setMyContents] = module.useState();
   const [Response, setResponse] = module.useState();
 
+  const [Email, setEmail] = module.useState("");
+  module.useEffect(() => {
+    if (window.Android) {
+      const userEmail = window.Android.parametrosFront();
+      setEmail(userEmail);
+    }
+  }, []);
+
   const location = useLocation();
   const description = location.state ? location.state.description : null;
   const img = location.state ? location.state.img : null;
+  const id = location.state ? location.state.id : null;
 
   async function myFunc() {
     await module
       .axios({
         method: "get",
-        url: "https://api-interdisciplinar.onrender.com/api/app/exercise?class_id=4",
+        url: `https://api-interdisciplinar.onrender.com/api/app/exercise?course_id=${id}&email=${Email}`,
       })
       .then((response) => {
         setMyContents(response.data);
@@ -29,7 +39,7 @@ export default function Quiz() {
   }
   module.useEffect(() => {
     myFunc();
-  }, []);
+  }, [Email]);
 
   const handleOpen = (value) => {
     if (!Clicked) {
@@ -59,6 +69,7 @@ export default function Quiz() {
           marginTop: 6.5,
           display: "flex",
           flexDirection: "column",
+          paddingBottom: 15
         }}
       >
         {!img ? <module.Navigate to="/" /> : null}
@@ -111,6 +122,7 @@ export default function Quiz() {
         </module.Grid>
         {Clicked ? <Result answer={Response} /> : null}
       </module.Grid>
+      <Footer />
     </div>
   );
 }

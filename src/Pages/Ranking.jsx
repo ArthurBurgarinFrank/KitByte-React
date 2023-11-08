@@ -2,6 +2,7 @@ import "../index.css";
 import module from "../dependencies"
 import trophyImg from "../assets/Images/trophy.png";
 import Player from "../Components/player.jsx";
+import Footer from "../Components/footer";
 
 export default function Ranking() {
 
@@ -36,7 +37,8 @@ export default function Ranking() {
         display: "flex",
         flexDirection: "column",
         gap: "8%",
-        backgroundColor: "#F3F3F3"
+        backgroundColor: "#F3F3F3",
+        paddingBottom: 15
       }}
     >
       <module.Grid
@@ -73,6 +75,7 @@ export default function Ranking() {
       >
         {Players}
       </module.Grid>
+      <Footer />
     </module.Grid>
   );
 }
