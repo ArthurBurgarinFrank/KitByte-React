@@ -60,7 +60,7 @@ const Tiny = (props) => {
         backgroundColor: props.bgColor,
         display: "flex",
         borderRadius: props.fullWidth ? 3 : 5,
-        zIndex: 2
+        zIndex: 20
       }}
     >
       <module.Grid
@@ -107,7 +107,7 @@ const Tiny = (props) => {
           <p>{desc ? desc : props.description ? props.description : "Carregando..."}</p>
         )}
         {props.text == false ? <b>{"Exercício - " + props.exerciseNumber}</b> : <module.ThemeProvider theme={buttonThemeReturn}>
-          <module.Link to={myPath} state={{ img: props.img, description: props.description, id: props.id }}>
+          <module.Link to={myPath} state={{ img: props.img, description: props.description, id: props.id, index: props.index }}>
             <module.Button
               sx={{
                 marginTop: 1,

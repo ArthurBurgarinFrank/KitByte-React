@@ -58,6 +58,8 @@ const Lesson = () => {
         bgColor={"#707070"}
         course={true}
         key={index}
+        index={index+1}
+        id={id}
         text={"Conheça!"}
         contrast={true}
         fullWidth={false}
