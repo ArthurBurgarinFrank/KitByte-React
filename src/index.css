@@ -58,7 +58,7 @@ img {
   background-color: #2880f2;
   display: flex;
   justify-content: space-around;
-  z-index: 10;
+  z-index: 21;
 }
 .footer-button {
   text-align: center;
@@ -66,10 +66,54 @@ img {
   padding-bottom: 10px;
   padding-top: 5px;
 }
+.selectedIcon1 {
+  width: 0;
+  height: 0;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-bottom: 8px solid white;
+  transform: rotate(180deg);
+  left: 34px;
+  bottom: 83px;
+  position: absolute;
+}
+.selectedIcon2 {
+  width: 0;
+  height: 0;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-bottom: 8px solid white;
+  transform: rotate(180deg);
+  left: 128px;
+  bottom: 83px;
+  position: absolute;
+}
+.selectedIcon3 {
+  width: 0;
+  height: 0;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-bottom: 8px solid white;
+  transform: rotate(180deg);
+  left: 222px;
+  bottom: 83px;
+  position: absolute;
+}
+.selectedIcon4 {
+  width: 0;
+  height: 0;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-bottom: 8px solid white;
+  transform: rotate(180deg);
+  left: 316px;
+  bottom: 83px;
+  position: absolute;
+}
 .caption {
   color: white;
 }
-.imgFooter{
+.imgFooter {
   width: 75%;
   height: 55%;
 }
