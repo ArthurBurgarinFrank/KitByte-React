@@ -19,7 +19,7 @@ export default function Home() {
   async function myFunc() {
     await module
       .axios(
-        `https://api-interdisciplinar.onrender.com/api/app/suggestedcourse?email=alcino@gmail.com`
+        `https://api-interdisciplinar.onrender.com/api/app/suggestedcourse?email=${Email}`
       )
       .then((response) => {
         setMyContents(response.data);
