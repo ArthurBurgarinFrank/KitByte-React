@@ -160,6 +160,7 @@ export default function Home() {
         title={MyContents.sugerido1.app}
         description={MyContents.sugerido1.descricao}
         img={MyContents.sugerido1.foto_curso}
+        id={MyContents.sugerido1.id}
         bdRadius={"100%"}
         bgColor={"#2880F2"}
         text={"Conheça!"}
@@ -170,6 +171,7 @@ export default function Home() {
         title={MyContents.sugerido2.app}
         description={MyContents.sugerido2.descricao}
         img={MyContents.sugerido2.foto_curso}
+        id={MyContents.sugerido2.id}
         bdRadius={"100%"}
         bgColor={"#2880F2"}
         text={"Conheça!"}
