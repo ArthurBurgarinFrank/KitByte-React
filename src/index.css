@@ -74,7 +74,7 @@ img {
   border-bottom: 8px solid white;
   transform: rotate(180deg);
   left: 9.5vw;
-  bottom: 12.3vh;
+  bottom: 92%;
   position: absolute;
 }
 .selectedIcon2 {
@@ -85,7 +85,7 @@ img {
   border-bottom: 8px solid white;
   transform: rotate(180deg);
   left: 34.5vw;
-  bottom: 12.3vh;
+  bottom: 92%;
   position: absolute;
 }
 .selectedIcon3 {
@@ -96,7 +96,7 @@ img {
   border-bottom: 8px solid white;
   transform: rotate(180deg);
   left: 59vw;
-  bottom: 12.3vh;
+  bottom: 92%;
   position: absolute;
 }
 .selectedIcon4 {
@@ -107,7 +107,7 @@ img {
   border-bottom: 8px solid white;
   transform: rotate(180deg);
   left: 84.2vw;
-  bottom: 12.3vh;
+  bottom: 92%;
   position: absolute;
 }
 .caption {
