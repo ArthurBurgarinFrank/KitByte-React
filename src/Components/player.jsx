@@ -8,7 +8,7 @@ const Players = (props) => {
         backgroundColor: props.background,
         color: props.color,
         borderRadius: 8,
-        width: "98%"
+        width: "98%"        
     }}>
         <h3>#{props.index}</h3>
         <p>{props.player.nome_usuario}</p>
