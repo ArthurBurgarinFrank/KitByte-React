@@ -73,8 +73,8 @@ img {
   border-right: 12px solid transparent;
   border-bottom: 8px solid white;
   transform: rotate(180deg);
-  left: 34px;
-  bottom: 83px;
+  left: 9.5%;
+  bottom: 92%;
   position: absolute;
 }
 .selectedIcon2 {
@@ -84,8 +84,8 @@ img {
   border-right: 12px solid transparent;
   border-bottom: 8px solid white;
   transform: rotate(180deg);
-  left: 128px;
-  bottom: 83px;
+  left: 34.5%;
+  bottom: 92%;
   position: absolute;
 }
 .selectedIcon3 {
@@ -95,8 +95,8 @@ img {
   border-right: 12px solid transparent;
   border-bottom: 8px solid white;
   transform: rotate(180deg);
-  left: 222px;
-  bottom: 83px;
+  left: 59%;
+  bottom: 92%;
   position: absolute;
 }
 .selectedIcon4 {
@@ -106,8 +106,8 @@ img {
   border-right: 12px solid transparent;
   border-bottom: 8px solid white;
   transform: rotate(180deg);
-  left: 316px;
-  bottom: 83px;
+  left: 84.2%;
+  bottom: 92%;
   position: absolute;
 }
 .caption {

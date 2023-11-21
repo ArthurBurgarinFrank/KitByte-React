@@ -25,9 +25,6 @@ export default function Video() {
     navigate("/courses");
   };
 
-  console.log(id);
-  console.log(index);
-
   return !Url ? (
     <module.Dialog
       aria-labelledby="alert-dialog-title"
